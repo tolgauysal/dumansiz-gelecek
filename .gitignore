@@ -1,0 +1,40 @@
+# =======================================================
+# Dumansız Gelecek - Sağlık & Sigara Bırakma Platformu
+# GitIgnore Dosyası
+# =======================================================
+
+# --- Kullanıcı Gizliliği ve Sağlık Verileri (Kritik) ---
+# Kullanıcıların test amaçlı yükleyebileceği tıbbi döküman, grafik veya raporlar
+/user_data/
+/med_reports/
+/charts/
+*.pdf
+*.xlsx
+*.csv
+
+# --- Kod Editörü ve IDE Dosyaları (VS Code vb.) ---
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# --- İşletim Sistemi ve Tarayıcı Çöp Dosyaları ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# --- Loglar ve Geçici Test Dosyaları ---
+*.log
+/logs/
+*.tmp
+*.temp
+test_data.js
+
+# --- Gelecekte npm/Node.js paketleri eklenirse ---
+node_modules/
+/dist/
+/build/
+.env
