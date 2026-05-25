@@ -40,7 +40,7 @@ Kaynak kodlarımız üzerinde herhangi bir mantıksal hata, bellek sızıntısı
 
 ### A. Bildirim Kanalları
 Lütfen bulduğunuz açıkları projenin GitHub "Issues" (Sorunlar) sekmesinde herkese açık bir şekilde paylaşarak kötü niyetli kişilerin kullanımına açmayın. Bunun yerine:
-* Doğrudan ve gizli olarak şu e-posta adresine detaylı bir rapor gönderin: **tolgauysal.dev@gmail.com**
+* Doğrudan ve gizli olarak şu e-posta adresine detaylı bir rapor gönderin: **tolgauysal3535@gmail.com**
 
 ### B. Rapor İçeriğinde Bulunması Gerekenler
 Göndereceğiniz siber güvenlik raporunun hızlıca çözülebilmesi için şu maddeleri içermesi önerilir:
