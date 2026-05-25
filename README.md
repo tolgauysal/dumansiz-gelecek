@@ -25,9 +25,12 @@ Proje "Single Page Application (SPA)" mantığıyla, hiçbir sunucu kurulumu ger
 - **Yaş:** 11
 - **Geliştirme Süresi:** 1 Gün (25 Mayıs 2026)
 - **Vizyon:** Milli Teknoloji Hamlesi
-
+  ## Yardımcı Danışman
+- **Danışman:** Volkan Mutlu
+- **Yaş:**11
 *"Teknoloji sadece oyun oynamak için değil, insan hayatını kurtarmak için de vardır!"*
 
 ## 📄 Lisans
 
 Bu proje açık kaynaklıdır ve MIT Lisansı ile lisanslanmıştır. İnsanlık yararına herkes tarafından kullanılabilir ve geliştirilebilir. Ülkemizin dumansız ve sağlıklı geleceğine armağan olsun! 🇹🇷
+![MİT LİSANS](https://github.com/tolgauysal/dumansiz-gelecek/blob/main/LICENCE)
