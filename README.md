@@ -27,7 +27,8 @@ Proje "Single Page Application (SPA)" mantığıyla, hiçbir sunucu kurulumu ger
 - **Vizyon:** Milli Teknoloji Hamlesi
   ## Yardımcı Danışman
 - **Danışman:** Volkan Mutlu
-- **Yaş:**11
+- **Yaş:** 11
+- **Vizyon:** Proje Geliştirme Ve Teknofeste Danışman
 *"Teknoloji sadece oyun oynamak için değil, insan hayatını kurtarmak için de vardır!"*
 
 ## 📄 Lisans
