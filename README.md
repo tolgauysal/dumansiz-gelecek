@@ -12,7 +12,6 @@
 - ⏱️ **Canlı Simülasyon Motoru:** Sigara bırakıldığı andan itibaren içilmeyen adet, kazanılan ömür, alınmayan katran ve tasarruf edilen milli servet saniyelik hesaplanır.
 - 🫁 **Sağlık Zaman Çizelgesi:** Tıbbi literatüre dayalı algoritma ile bedenin (nabız, akciğer temizliği) kendini yenileme süreci animasyonlu olarak takip edilir.
 - 🆘 **İlk Yardım: 4-7-8 Nefes Terapisi:** Ani kriz (yoksunluk) anlarında otonom sinir sistemini saniyeler içinde sakinleştiren interaktif nefes animasyonu.
-- 🏅 **Oyunlaştırma (Gamification):** Kullanıcının başardıkça rozetler kazanmasını sağlayan motivasyon ve ödül sistemi.
 - 🌓 **Karanlık/Aydınlık Mod:** Göz yormayan, modern "Glassmorphism" tasarıma sahip kullanıcı dostu arayüz.
 
 ## ⚙️ Nasıl Çalışır?
