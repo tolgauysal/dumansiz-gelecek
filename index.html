@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEKNOFEST Projesi | Dumansız Gelecek - Tolga Uysal</title>
+    <title>TEKNOFEST Projesi | Dumansız Gelecek</title>
     
     <!-- Fontlar & İkonlar -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="Gemini_Generated_Image_p2i8gp2i8gp2i8gp.png" type="image/png">
+    <link rel="icon" href="favicon.png" type="image/png">
     <style>
         /* === DEĞİŞKENLER VE TEMA (TEKNOFEST ÖZEL) === */
         :root {
@@ -24,7 +24,7 @@
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             
             /* TEKNOFEST Renk Paleti */
-            --primary: #e11d48; /* Teknofest Kırmızısı */
+            --primary: #e11d48; 
             --primary-hover: #be123c;
             --secondary: #0ea5e9;
             --success: #10b981;
@@ -33,7 +33,7 @@
             --purple: #8b5cf6;
             
             /* Gradientler */
-            --grad-primary: linear-gradient(135deg, #f43f5e, #e11d48); /* Kırmızı Gradient */
+            --grad-primary: linear-gradient(135deg, #f43f5e, #e11d48); 
             --grad-success: linear-gradient(135deg, #34d399, #10b981);
             --grad-danger: linear-gradient(135deg, #f87171, #ef4444);
             --grad-warning: linear-gradient(135deg, #fbbf24, #f59e0b);
@@ -74,6 +74,7 @@
 
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
+        img { max-width: 100%; height: auto; }
         
         /* === TEKNOFEST TOP BAR === */
         .tf-banner {
@@ -108,7 +109,7 @@
         /* === ANA YAPI === */
         .container { max-width: 1300px; margin: 0 auto; padding: 3rem 1.5rem 2rem; }
 
-        /* === JÜRİ KARŞILAMA VE PROJE KÜNYESİ (YENİ) === */
+        /* === JÜRİ KARŞILAMA VE PROJE KÜNYESİ === */
         .project-identity {
             background: var(--bg-card); border: 2px solid var(--primary);
             border-radius: var(--radius-lg); padding: 2.5rem; margin-top: 2rem; margin-bottom: 3rem;
@@ -123,24 +124,21 @@
             width: 120px; height: 120px; border-radius: 50%; background: var(--grad-dark);
             display: flex; align-items: center; justify-content: center; color: white;
             font-size: 3rem; font-weight: bold; border: 4px solid var(--primary); flex-shrink: 0;
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-lg); overflow: hidden; 
         }
-        .identity-content h1 { font-size: 2rem; font-weight: 900; margin-bottom: 0.5rem; color: var(--text-main); }
+        .developer-avatar img {
+            width: 100%; height: 100%; object-fit: cover; 
+        }
+        .identity-content h1 { font-size: 2rem; font-weight: 900; margin-bottom: 0.5rem; color: var(--text-main); line-height: 1.2; }
         .identity-content h1 span { color: var(--primary); }
         .identity-content p { color: var(--text-muted); font-size: 1rem; margin-bottom: 1rem; }
         .tf-tags { display: flex; gap: 1rem; flex-wrap: wrap; }
         .tf-tag { background: var(--bg-body); border: 1px solid var(--border-color); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
         .tf-tag.highlight { background: rgba(225, 29, 72, 0.1); color: var(--primary); border-color: var(--primary); }
 
-        @media (max-width: 768px) {
-            .project-identity { flex-direction: column; text-align: center; }
-            .tf-tags { justify-content: center; }
-        }
-
         /* === DASHBOARD GRID === */
         .dashboard-layout { display: grid; grid-template-columns: 320px 1fr; gap: 2rem; margin-bottom: 4rem; }
-        @media (max-width: 992px) { .dashboard-layout { grid-template-columns: 1fr; } }
-
+        
         /* Kart Stilleri */
         .card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.8rem; box-shadow: var(--shadow-lg); transition: var(--transition); }
         .card:hover { border-color: var(--primary); transform: translateY(-3px); }
@@ -195,15 +193,7 @@
         .tl-progress { height: 6px; background: var(--bg-body); border-radius: 10px; margin-top: 1rem; overflow: hidden; }
         .tl-bar { height: 100%; background: var(--grad-primary); width: 0%; transition: width 1s ease; }
 
-        @media (max-width: 768px) {
-            .timeline::before { left: 20px; }
-            .tl-item { padding-right: 0; padding-left: 50px; justify-content: flex-start; }
-            .tl-item:nth-child(even) { padding-left: 50px; }
-            .tl-dot, .tl-item:nth-child(even) .tl-dot { left: 10px; right: auto; }
-            .tl-content { width: 100%; }
-        }
-
-        /* === ROZETLER VE BAŞARILAR === */
+        /* === ROZETLER VE BAŞARILAR (OYUNLAŞTIRMA) === */
         .achievements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; }
         .badge-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem 1rem; text-align: center; transition: var(--transition); filter: grayscale(100%); opacity: 0.6; }
         .badge-card.unlocked { filter: grayscale(0%); opacity: 1; border-color: var(--warning); box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2); transform: translateY(-5px); }
@@ -253,23 +243,69 @@
         .breathe-hold { transform: scale(2.2); opacity: 0.8; }
         .breathe-exhale { transform: scale(1); }
 
+        /* ====================================================
+           RESPONSIVE (MOBİL, TABLET, PC) MEDYA SORGULARI 
+           ==================================================== */
+        
+        /* TABLET GÖRÜNÜMÜ */
+        @media (max-width: 992px) { 
+            .dashboard-layout { grid-template-columns: 1fr; }
+            .section-header h2 { font-size: 2rem; }
+        }
+
+        /* MOBİL GÖRÜNÜMÜ */
+        @media (max-width: 768px) {
+            .hide-mobile { display: none !important; }
+            .nav-menu { gap: 1rem; }
+            .logo { font-size: 1.2rem; }
+            
+            .project-identity { flex-direction: column; text-align: center; padding: 1.5rem; gap: 1rem; }
+            .identity-content h1 { font-size: 1.6rem; }
+            .tf-tags { justify-content: center; }
+            
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            
+            .timeline::before { left: 20px; }
+            .tl-item { padding-right: 0; padding-left: 50px; justify-content: flex-start; }
+            .tl-item:nth-child(even) { padding-left: 50px; }
+            .tl-dot, .tl-item:nth-child(even) .tl-dot { left: 10px; right: auto; }
+            .tl-content { width: 100%; }
+            
+            .breathe-container { padding: 2rem 1rem; }
+            .circle-wrap { width: 200px; height: 200px; }
+            .breathe-inhale { transform: scale(1.8); }
+            .breathe-hold { transform: scale(1.8); opacity: 0.8; }
+        }
+        
+        /* EKSTRA KÜÇÜK MOBİL EKRANLAR İÇİN */
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .logo span { display: none; } 
+            .breathe-controls { flex-direction: column; }
+            .btn { font-size: 0.9rem; }
+        }
+        ulti { color: var(--text-muted); font-size: 0.9rem; margin-left: 1.2rem; margin-top: 0.5rem; }
+
+
     </style>
 </head>
 <body>
 
     <!-- TEKNOFEST BANNER -->
-    <div class="tf-banner">
-        🇹🇷 TEKNOFEST 2026 | İNSANLIK YARARINA TEKNOLOJİ YARIŞMASI
-    </div>
+    <div class="tf-banner" id="teknofestBanner">
+    <p>🇹🇷 TEKNOFEST 2026 | İNSANLIK YARARINA TEKNOLOJİ YARIŞMASI</p>
+    <button id="closeBannerBtn" style="background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 0 5px; line-height: 1;"><i class="fa-solid fa-xmark"></i></button>
+</div>
 
     <!-- ÜST MENÜ -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo"><i class="fa-solid fa-rocket"></i> Dumansız Gelecek</a>
+            <a href="#" class="logo"><i class="fa-solid fa-rocket"></i> <span>Dumansız Gelecek</span></a>
             <div class="nav-menu">
-                <a href="#proje-karti" class="hide-mobile">Künye</a>
+                <a href="#proje-karti-tolga" class="hide-mobile">Künye</a>
                 <a href="#dashboard" class="hide-mobile">Panel</a>
-                <a href="#timeline">Sağlık</a>
+                <a href="#achievements" class="hide-mobile">Başarılar</a>
+                <a href="#timeline" class="hide-mobile">Sağlık</a>
                 <a href="#breathe">İlk Yardım</a>
                 <button class="theme-toggle" id="themeBtn" aria-label="Tema Değiştir">
                     <i class="fa-solid fa-moon"></i>
@@ -280,22 +316,41 @@
 
     <div class="container">
         
-        <!-- PROJE VE GELİŞTİRİCİ KÜNYESİ -->
-        <section id="proje-karti" class="project-identity">
+        <!-- PROJE VE GELİŞTİRİCİ KÜNYESİ (TOLGA) -->
+        <section id="proje-karti-tolga" class="project-identity">
             <div class="developer-avatar">
-                <i class="fa-solid fa-user-astronaut"></i>
+                <img src="Tolga.jpg" alt="Tolga Uysal">
             </div>
             <div class="identity-content">
                 <h1>Merhaba TEKNOFEST, Ben <span>Tolga Uysal</span>!</h1>
                 <p>Ben 11 yaşındayım. Milli Teknoloji Hamlesi vizyonuyla, ülkemizin geleceği olan gençleri ve ailelerimizi sigara bağımlılığından kurtarmak için bu projeyi <strong>sadece 1 günde</strong> (25 Mayıs 2026) geliştirdim. Vücudun kendini yenileme mucizesini dijitalleştiren bu platforma hoş geldiniz!</p>
                 <div class="tf-tags">
                     <span class="tf-tag highlight"><i class="fa-solid fa-code"></i> Geliştirici: Tolga Uysal (11 Yaş)</span>
-                    <span class="tf-tag"><i class="fa-solid fa-calendar-check"></i> Tarih: 25.05.2026</span>
+                    <span class="tf-tag"><i class="fa-solid fa-calendar-check"></i> Tarih: 26.05.2026</span>
                     <span class="tf-tag"><i class="fa-solid fa-heart-pulse"></i> Kategori: Sağlık ve İlk Yardım</span>
                     <span class="tf-tag"><i class="fa-solid fa-laptop-code"></i> İnsanlık Yararına Teknoloji</span>
                 </div>
             </div>
         </section>
+
+        <!-- PROJE VE GELİŞTİRİCİ KÜNYESİ (VOLKAN) -->
+       <section id="proje-karti-volkan" class="project-identity">
+    <div class="developer-avatar">
+        <img src="Volkan.jpeg" alt="Volkan Mutlu">
+    </div>
+    <div class="identity-content">
+        <h1>Merhaba TEKNOFEST, Ben <span>Volkan Mutlu</span>!</h1>
+        <p>Projenin danışmanı ve süreç ortağıyım. Türkiye Cumhuriyeti'nin tam bağımsız teknoloji hamlesine katkı sunmak ve genç nesilleri zararlı bağımlılıklardan koruyarak sigara kaynaklı sağlık kayıplarının önüne geçmek amacıyla bu yola çıktım. Ekibimize süreç, vizyon yönetimi ve tasarım konularında destek sağlıyorum.</p>
+       <div class="tf-tags">
+            <span class="tf-tag highlight"><i class="fa-solid fa-user-tie"></i> Danışman: Volkan Mutlu</span>
+            <span class="tf-tag"><i class="fa-solid fa-calendar-check"></i> Tarih: 26.05.2026</span>
+            <span class="tf-tag"><i class="fa-solid fa-heart-pulse"></i> Kategori: Sağlık ve İlk Yardım</span>
+            <span class="tf-tag"><i class="fa-solid fa-laptop-code"></i> İnsanlık Yararına Teknoloji</span>
+        </div>
+    </div>
+</section>
+
+
 
         <!-- DASHBOARD (KONTROL PANELİ) -->
         <section id="dashboard" class="dashboard-layout">
@@ -330,50 +385,54 @@
             <div class="card" style="padding: 0; background: transparent; border: none; box-shadow: none;">
                 <h3 id="welcomeMsg" style="margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 800;">Algoritma Çalışıyor...</h3>
                 <div class="stats-grid">
-                    
                     <div class="stat-box st-time">
                         <i class="fa-solid fa-stopwatch stat-icon"></i>
                         <div class="stat-label">Dumansız Süre</div>
                         <div class="stat-value" id="valTime">0g 0s 0d 0sn</div>
                         <div class="stat-sub">Özgürlüğe atılan adımlar</div>
                     </div>
-                    
                     <div class="stat-box st-money">
                         <i class="fa-solid fa-wallet stat-icon"></i>
                         <div class="stat-label">Kurtarılan Milli Servet</div>
                         <div class="stat-value" id="valMoney">0.00 TL</div>
                         <div class="stat-sub">Ülke ekonomisine katkı</div>
                     </div>
-                    
                     <div class="stat-box st-count">
                         <i class="fa-solid fa-ban stat-icon"></i>
                         <div class="stat-label">İçilmeyen Sigara</div>
                         <div class="stat-value" id="valCount">0 Adet</div>
                         <div class="stat-sub">Zehirden kaçınıldı</div>
                     </div>
-                    
                     <div class="stat-box st-life">
                         <i class="fa-solid fa-heart-pulse stat-icon"></i>
                         <div class="stat-label">Kazanılan Ömür</div>
                         <div class="stat-value" id="valLife">0 Saat</div>
                         <div class="stat-sub">Hayata eklenen zaman</div>
                     </div>
-                    
                     <div class="stat-box st-tar">
                         <i class="fa-solid fa-flask stat-icon"></i>
                         <div class="stat-label">Alınmayan Katran</div>
                         <div class="stat-value" id="valTar">0 mg</div>
                         <div class="stat-sub">Ciğerlerimiz temiz kaldı</div>
                     </div>
-
                     <div class="stat-box st-time">
                         <i class="fa-solid fa-wind stat-icon" style="color: var(--secondary)"></i>
                         <div class="stat-label">Çekilmeyen Nefes</div>
                         <div class="stat-value" id="valPuff">0</div>
                         <div class="stat-sub">Zehirli nefes engellendi</div>
                     </div>
-
                 </div>
+            </div>
+        </section>
+
+        <!-- BAŞARILAR VE ROZETLER (OYUNLAŞTIRMA MODÜLÜ) -->
+        <section id="achievements">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-trophy"></i> Başarılar ve Rozetler</h2>
+                <p>Kullanıcının ilerlemesini ödüllendiren oyunlaştırma modülü. Her rozet, sigarayı bırakmanın sağlığa ve ekonomiye olan somut faydalarını temsil eder.</p>
+            </div>
+            <div class="achievements-grid" id="badgeContainer">
+                <!-- JS ile Doldurulacak -->
             </div>
         </section>
 
@@ -383,7 +442,6 @@
                 <h2><i class="fa-solid fa-stethoscope"></i> Vücudun Yenilenme Algoritması</h2>
                 <p>Tıbbi literatür taranarak oluşturulmuş gerçek zamanlı sağlık ilerleme çubuğu. Sistem, kullanıcının bıraktığı dakikayı analiz ederek bedendeki hücre yenilenmesini hesaplar.</p>
             </div>
-            
             <div class="timeline" id="healthTimeline">
                 <!-- JavaScript ile Doldurulacak -->
             </div>
@@ -461,31 +519,31 @@
             </div>
         </section>
 
-        <!-- BAŞARILAR VE ROZETLER -->
-        <section id="achievements">
-            <div class="section-header">
-                <h2><i class="fa-solid fa-medal"></i> Oyunlaştırma (Gamification) Motoru</h2>
-                <p>Kullanıcıyı sistemde tutmak ve motivasyonu artırmak için geliştirilen dinamik rozet kilit açma algoritması.</p>
-            </div>
-            <div class="achievements-grid" id="badgeContainer">
-                <!-- JS ile Doldurulacak -->
-            </div>
-        </section>
-
     </div> <!-- Container Bitiş -->
 
     <!-- FOOTER -->
     <footer>
         <div class="footer-logo"><i class="fa-solid fa-rocket" style="color: var(--primary)"></i> Dumansız Gelecek</div>
+        <div class="footer-text">
+            <button class="btn" style="background: var(--bg-body); border: 1px solid var(--border-color); padding: 0.5rem 1rem; border-radius: var(--radius-md); margin-bottom: 1rem; font-size: 0.9rem; font-weight: 500; color: var(--text-main);">
+                <p><a href="https://github.com/tolgauysal" target="_blank">Github Tolga Uysal</a></p>
+            </button>
+            <button class="btn" style="background: var(--bg-body); border: 1px solid var(--border-color); padding: 0.5rem 1rem; border-radius: var(--radius-md); margin-bottom: 1rem; font-size: 0.9rem; font-weight: 500; color: var(--text-main);">
+                <p><a href="https://github.com/volkan560" target="_blank">Github Volkan Mutlu</a></p>
+            </button>
+        </div>
         <p class="footer-text">Bu yazılım projesi, <strong>TEKNOFEST 2026</strong> İnsanlık Yararına Teknoloji - Sağlık ve İlk Yardım kategorisi için, bağımlılıkla mücadelede teknolojik bir çözüm sunmak amacıyla geliştirilmiştir.</p>
-        <p class="copyright">&copy; 25.05.2026 | Kodlama ve Tasarım: Tolga Uysal (11 Yaş) | Milli Teknoloji Hamlesi</p>
+        <p class="copyright">&copy; 25.05.2026 | Kodlama ve Tasarım: Tolga Uysal & Volkan Mutlu (11 Yaş) | Milli Teknoloji Hamlesi</p>
     </footer>
 
     <!-- TOAST BİLDİRİM KONTEYNERİ -->
     <div id="toast-container"></div>
+    <form id="configForm" autocomplete="off"></form>
 
     <!-- JAVASCRIPT KODLARI -->
     <script>
+        /* === GENEL DEĞİŞKENLER VE ELEMENT SEÇİMLERİ === */
+
         /* === 1. TEMA YÖNETİMİ === */
         const themeBtn = document.getElementById('themeBtn');
         let currentTheme = localStorage.getItem('theme') || 'light';
@@ -517,7 +575,7 @@
             packCost: document.getElementById('packCost')
         };
 
-        // TEKNOFEST Sunumu için varsayılan simülasyon ayarları (3 Ay Öncesi)
+        // Yükleme fonksiyonundaki eksik çağrılar düzeltildi
         function loadConfig() {
             const savedDate = localStorage.getItem('tf_quitDate');
             if(savedDate) {
@@ -525,6 +583,11 @@
                 els.quitDate.value = savedDate;
                 els.dailyPacks.value = localStorage.getItem('tf_dailyPacks') || '1';
                 els.packCost.value = localStorage.getItem('tf_packCost') || '80';
+                
+                // Kayıtlı veri varsa sistemi direkt çalıştırıyoruz
+                updateDashboard();
+                checkAchievements();
+                updateTimeline();
             } else {
                 // Jürinin sistemi görebilmesi için simülasyonu 3 ay öncesine ayarlıyoruz
                 const defaultDate = new Date(Date.now() - (90 * 24 * 60 * 60 * 1000));
@@ -539,6 +602,7 @@
             localStorage.setItem('tf_quitDate', els.quitDate.value);
             localStorage.setItem('tf_dailyPacks', els.dailyPacks.value);
             localStorage.setItem('tf_packCost', els.packCost.value);
+            
             updateDashboard();
             checkAchievements();
             updateTimeline();
@@ -604,6 +668,10 @@
                 // Çekilmeyen Nefes (Puff)
                 const avoidedPuffs = avoidedCigs * 10;
                 document.getElementById('valPuff').innerText = Math.floor(avoidedPuffs).toLocaleString('tr-TR');
+
+                // OYUNLAŞTIRMA VE SAĞLIK ÇİZELGESİ CANLI GÜNCELLENİYOR
+                checkAchievements();
+                updateTimeline();
 
             }, 1000);
         }
@@ -672,7 +740,9 @@
 
         function checkAchievements() {
             const container = document.getElementById('badgeContainer');
-            container.innerHTML = '';
+            
+            // Eğer boş değilse tekrar tekrar render etmemesi için içeriği HTML bazında string ile hazırlıyoruz
+            let htmlContent = "";
 
             const quitMs = new Date(els.quitDate.value).getTime();
             const nowMs = new Date().getTime();
@@ -688,7 +758,7 @@
                 if (badge.reqType === 'money' && savedMoney >= badge.reqVal) isUnlocked = true;
                 if (badge.reqType === 'count' && avoidedCigs >= badge.reqVal) isUnlocked = true;
 
-                container.innerHTML += `
+                htmlContent += `
                     <div class="badge-card ${isUnlocked ? 'unlocked' : ''}">
                         <i class="fa-solid ${badge.icon} badge-icon"></i>
                         <h4 class="badge-title">${badge.name}</h4>
@@ -696,6 +766,8 @@
                     </div>
                 `;
             });
+            
+            container.innerHTML = htmlContent;
         }
 
         /* === 6. KRİZ ANI: NEFES EGZERSİZİ (4-7-8 METODU) === */
@@ -766,9 +838,24 @@
             
             // Jüri için özel bildirim
             setTimeout(() => {
-                showToast("Değerli TEKNOFEST Jürisi, Tolga Uysal'ın (11) projesine hoş geldiniz!", 'warning');
+                showToast("Değerli TEKNOFEST Jürisi, projemize hoş geldiniz!", 'warning');
             }, 1000);
         });
+        /* === 8. BANNER KAPATMA MOTORU === */
+const tfBanner = document.getElementById('teknofestBanner');
+const closeBannerBtn = document.getElementById('closeBannerBtn');
+
+if (closeBannerBtn && tfBanner) {
+    closeBannerBtn.addEventListener('click', () => {
+        tfBanner.style.opacity = '0';
+        tfBanner.style.transform = 'translateY(-10px)';
+        
+        // Animasyonun pürüzsüz görünmesi için 300ms sonra tamamen gizliyoruz
+        setTimeout(() => {
+            tfBanner.style.display = 'auto';
+        }, 300);
+    });
+}
 
     </script>
 </body>
