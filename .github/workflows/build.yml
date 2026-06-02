@@ -33,7 +33,12 @@ jobs:
           python3-dev \
           libncurses5 \
           unzip \
-          wget
+          wget \
+          autoconf \
+          automake \
+          libtool \
+          pkg-config \
+          zlib1g-dev
     
     - name: Set up Android SDK
       run: |
@@ -45,36 +50,31 @@ jobs:
         
     - name: Accept Android Licenses
       run: |
-        echo "y" | ~/Android/Sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=$HOME/Android/Sdk "platforms;android-31" "build-tools;31.0.0" "ndk;25.1.8937393"
+        yes | ~/Android/Sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=$HOME/Android/Sdk "platforms;android-31" "build-tools;31.0.0" "ndk;25.1.8937393"
     
     - name: Set up environment variables
       run: |
         echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> $GITHUB_ENV
         echo "ANDROID_SDK_ROOT=$HOME/Android/Sdk" >> $GITHUB_ENV
         echo "ANDROID_NDK_ROOT=$HOME/Android/Sdk/ndk/25.1.8937393" >> $GITHUB_ENV
-        echo "$HOME/Android/Sdk/cmdline-tools/latest/bin:$HOME/Android/Sdk/tools:$HOME/Android/Sdk/platform-tools" >> $GITHUB_PATH
+        echo "PATH=$HOME/Android/Sdk/cmdline-tools/latest/bin:$HOME/Android/Sdk/tools:$HOME/Android/Sdk/platform-tools:$PATH" >> $GITHUB_ENV
     
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip setuptools wheel
-        pip install briefcase cython
-    
-    - name: Create Briefcase Android Project
-      run: |
-        briefcase create android --no-input
+        pip install buildozer cython kivy
     
     - name: Build APK
       run: |
-        briefcase build android
-        briefcase package android
-    
+        buildozer android release
+        
     - name: Find APK
       id: find_apk
       run: |
         APK_PATH=$(find . -name "*.apk" -type f | head -1)
         if [ -z "$APK_PATH" ]; then
           echo "APK not found!"
-          find . -name "*.apk" -o -name "build" -o -name "dist"
+          find . -name "*.apk" -o -name "bin" -o -name "build"
           exit 1
         fi
         echo "apk_path=$APK_PATH" >> $GITHUB_OUTPUT
@@ -97,6 +97,6 @@ jobs:
           
           **URL**: https://tolgauysal.github.io/dumansiz-gelecek/
           
-          Android uygulaması başarıyla oluşturuldu.
+          Kivy + Buildozer ile oluşturulan Android uygulaması.
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

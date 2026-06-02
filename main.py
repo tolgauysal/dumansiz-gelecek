@@ -1,64 +1,33 @@
 """
-Dumansız Gelecek - APK Uygulaması
-Android WebView Wrapper
+Dumansız Gelecek - Kivy Android Uygulaması
+WebView tabanlı uygulama
 """
 
-from jnius import autoclass, cast
-from android.runnable import run_on_ui_thread
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.garden.webview import WebView
+from kivy.core.window import Window
 
-# Android sınıflarını yükle
-PythonActivity = autoclass('org.kivy.android.PythonActivity')
-WebView = autoclass('android.webkit.WebView')
-WebViewClient = autoclass('android.webkit.WebViewClient')
-WebChromeClient = autoclass('android.webkit.WebChromeClient')
-LinearLayout = autoclass('android.widget.LinearLayout')
-LayoutParams = autoclass('android.view.ViewGroup$LayoutParams')
+# Uygulamayı portrait modunda ayarla
+Window.size = (540, 960)
 
 
-class DumansizGelecekApp:
-    """WebView tabanlı uygulama"""
+class DumansizGelecekApp(App):
+    """Dumansız Gelecek Kivy Uygulaması"""
     
-    def __init__(self):
-        self.activity = PythonActivity.mActivity
+    def build(self):
+        """Uygulamayı oluştur"""
+        layout = BoxLayout(orientation='vertical')
         
-    @run_on_ui_thread
-    def create_webview(self):
-        """WebView oluştur ve yapılandır"""
-        # Layout'u kur
-        layout = LinearLayout(self.activity)
-        layout.setLayoutParams(
-            LinearLayout.LayoutParams(
-                LayoutParams.MATCH_PARENT,
-                LayoutParams.MATCH_PARENT
-            )
-        )
+        # WebView oluştur ve siteyi yükle
+        webview = WebView()
+        webview.url = 'https://tolgauysal.github.io/dumansiz-gelecek/'
         
-        # WebView oluştur
-        webview = WebView(self.activity)
-        webview.setLayoutParams(
-            LinearLayout.LayoutParams(
-                LayoutParams.MATCH_PARENT,
-                LayoutParams.MATCH_PARENT
-            )
-        )
-        
-        # WebView ayarları
-        settings = webview.getSettings()
-        settings.setJavaScriptEnabled(True)
-        settings.setDomStorageEnabled(True)
-        settings.setDatabaseEnabled(True)
-        settings.setMixedContentMode(0)  # MIXED_CONTENT_ALWAYS_ALLOW
-        
-        # Site yükle
-        webview.loadUrl('https://tolgauysal.github.io/dumansiz-gelecek/')
-        
-        # Layout'a ekle
-        layout.addView(webview)
-        
-        # Activity'ye set et
-        self.activity.setContentView(layout)
+        layout.add_widget(webview)
+        return layout
 
 
 if __name__ == '__main__':
     app = DumansizGelecekApp()
-    app.create_webview()
+    app.title = "Dumansız Gelecek"
+    app.run()

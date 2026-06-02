@@ -1,2 +1,4 @@
-pyjnius
+kivy==2.2.1
 android
+pyjnius
+requests
