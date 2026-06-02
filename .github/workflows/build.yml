@@ -93,10 +93,31 @@ jobs:
       with:
         files: ${{ steps.find_apk.outputs.apk_path }}
         body: |
-          # Dumansız Gelecek APK Release
-          
-          **URL**: https://tolgauysal.github.io/dumansiz-gelecek/
+          # 📱 Dumansız Gelecek APK Release
           
           Kivy + Buildozer ile oluşturulan Android uygulaması.
+          
+          ## 📥 Kurulum
+          1. APK dosyasını indir
+          2. Android cihazına aktar
+          3. Bilinmeyen kaynaktan yükleme izni ver
+          4. APK'yı yükle
+          5. Uygulamayı başlat
+          
+          ## ✨ Özellikler
+          - WebView tabanlı
+          - Tüm Android 5.0+ cihazlarla uyumlu
+          - Responsive tasarım
+          - ~50 MB boyutunda
+          
+          ## 🌐 Web Sitesi
+          https://tolgauysal.github.io/dumansiz-gelecek/
+          
+          ## 📞 Sorun?
+          GitHub Issues'da bildir: https://github.com/tolgauysal/dumansiz-gelecek/issues
+          
+          ---
+          **Sürüm**: ${{ github.ref_name }}
+          **Yayın Tarihi**: 2 Haziran 2026
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
