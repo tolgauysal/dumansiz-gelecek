@@ -1,0 +1,15 @@
+venv/
+bin/
+dist/
+build/
+*.pyc
+__pycache__/
+*.egg-info/
+.buildozer/
+.gradle/
+*.apk
+*.aab
+.idea/
+*.swp
+*.swo
+.DS_Store

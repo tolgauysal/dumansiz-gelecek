@@ -1,0 +1,292 @@
+Date/Time:       2026-06-02 14:29:10 
+Command line:    C:\Users\Casper\OneDrive\Desktop\dumansiz-gelecek\.venv\Scripts\briefcase create android
+
+OS Release:      Windows 11
+OS Version:      10.0.26200
+Architecture:    AMD64
+Platform:        Windows-11-10.0.26200-SP0
+
+Python exe:      c:\Users\Casper\OneDrive\Desktop\dumansiz-gelecek\.venv\Scripts\python.exe
+Python version:  3.12.3 (tags/v3.12.3:f6650f9, Apr  9 2024, 14:05:25) [MSC v.1938 64 bit (AMD64)]
+Virtual env:     True
+Conda env:       False
+
+Briefcase:       0.4.2
+Target platform: android
+Target format:   gradle
+
+Environment Variables:
+	ALLUSERSPROFILE=C:\ProgramData
+	APPDATA=C:\Users\Casper\AppData\Roaming
+	BUNDLED_DEBUGPY_PATH=c:\Users\Casper\.vscode\extensions\ms-python.debugpy-2026.6.0-win32-x64\bundled\libs\debugpy
+	CHOCOLATEYINSTALL=C:\ProgramData\chocolatey
+	CHOCOLATEYLASTPATHUPDATE=134085548942931904
+	CHROME_CRASHPAD_PIPE_NAME=\\.\pipe\crashpad_18124_ZSMTIAVUDPHFLMVH
+	COLORTERM=truecolor
+	COMMONPROGRAMFILES=C:\Program Files\Common Files
+	COMMONPROGRAMFILES(X86)=C:\Program Files (x86)\Common Files
+	COMMONPROGRAMW6432=C:\Program Files\Common Files
+	COMPUTERNAME=CASPER
+	COMSPEC=C:\WINDOWS\system32\cmd.exe
+	COPILOT_AGENT=1
+	COPILOT_DEBUG_NONCE=b389f9f03b74e9cb266bc91d58b1f6c3
+	DRIVERDATA=C:\Windows\System32\Drivers\DriverData
+	EFC_20852_1592913036=1
+	EFC_20852_4126798990=1
+	GIT_ASKPASS=********************
+	GIT_EDITOR=:
+	GIT_MERGE_AUTOEDIT=no
+	GIT_PAGER=cat
+	HOMEDRIVE=C:
+	HOMEPATH=\Users\Casper
+	LANG=tr_TR.UTF-8
+	LOCALAPPDATA=C:\Users\Casper\AppData\Local
+	LOGONSERVER=\\CASPER
+	NUMBER_OF_PROCESSORS=12
+	ONEDRIVE=C:\Users\Casper\OneDrive
+	OS=Windows_NT
+	PATH=C:\Users\Casper\OneDrive\Desktop\dumansiz-gelecek\.venv\Scripts;c:\Users\Casper\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;c:\Users\Casper\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\Program Files\nodejs;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\Casper\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\Casper\AppData\Local\Programs\Python\Python312\;C:\Users\Casper\AppData\Local\Programs\Python\Launcher\;C:\Users\Casper\AppData\Local\Microsoft\WindowsApps;C:\Users\Casper\AppData\Local\spicetify;C:\Users\Casper\.dotnet\tools;C:\Users\Casper\AppData\Roaming\npm;C:\Users\Casper\AppData\Local\Programs\Microsoft VS Code\bin;c:\Users\Casper\.vscode\extensions\ms-python.debugpy-2026.6.0-win32-x64\bundled\scripts\noConfigScripts
+	PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL
+	PROCESSOR_ARCHITECTURE=AMD64
+	PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 154 Stepping 4, GenuineIntel
+	PROCESSOR_LEVEL=6
+	PROCESSOR_REVISION=9a04
+	PROGRAMDATA=C:\ProgramData
+	PROGRAMFILES=C:\Program Files
+	PROGRAMFILES(X86)=C:\Program Files (x86)
+	PROGRAMW6432=C:\Program Files
+	PSMODULEPATH=C:\Users\Casper\OneDrive\Belgeler\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+	PUBLIC=C:\Users\Public
+	PYDEVD_DISABLE_FILE_VALIDATION=1
+	PYTHONSTARTUP=c:\Users\Casper\AppData\Roaming\Code\User\workspaceStorage\6125ce24987c47ff203f062f4b30a196\ms-python.python\pythonrc.py
+	PYTHON_BASIC_REPL=1
+	SESSIONNAME=Console
+	SYSTEMDRIVE=C:
+	SYSTEMROOT=C:\WINDOWS
+	TEMP=C:\Users\Casper\AppData\Local\Temp
+	TERM_PROGRAM=vscode
+	TERM_PROGRAM_VERSION=1.122.1
+	TMP=C:\Users\Casper\AppData\Local\Temp
+	USERDOMAIN=CASPER
+	USERDOMAIN_ROAMINGPROFILE=CASPER
+	USERNAME=Tolga Uysal
+	USERPROFILE=C:\Users\Casper
+	VIRTUAL_ENV=C:\Users\Casper\OneDrive\Desktop\dumansiz-gelecek\.venv
+	VIRTUAL_ENV_PROMPT=.venv
+	VSCODE_DEBUGPY_ADAPTER_ENDPOINTS=c:\Users\Casper\.vscode\extensions\ms-python.debugpy-2026.6.0-win32-x64\.noConfigDebugAdapterEndpoints\endpoint-22440118982e01f7.txt
+	VSCODE_GIT_ASKPASS_EXTRA_ARGS=********************
+	VSCODE_GIT_ASKPASS_MAIN=********************
+	VSCODE_GIT_ASKPASS_NODE=********************
+	VSCODE_GIT_IPC_HANDLE=\\.\pipe\vscode-git-f17f6b5d5c-sock
+	VSCODE_INJECTION=1
+	VSCODE_PYTHON_AUTOACTIVATE_GUARD=1
+	WINDIR=C:\WINDOWS
+	ZES_ENABLE_SYSMAN=1
+	_OLD_VIRTUAL_PATH=c:\Users\Casper\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;c:\Users\Casper\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\Program Files\nodejs;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\Casper\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\Casper\AppData\Local\Programs\Python\Python312\;C:\Users\Casper\AppData\Local\Programs\Python\Launcher\;C:\Users\Casper\AppData\Local\Microsoft\WindowsApps;C:\Users\Casper\AppData\Local\spicetify;C:\Users\Casper\.dotnet\tools;C:\Users\Casper\AppData\Roaming\npm;C:\Users\Casper\AppData\Local\Programs\Microsoft VS Code\bin;c:\Users\Casper\.vscode\extensions\ms-python.debugpy-2026.6.0-win32-x64\bundled\scripts\noConfigScripts
+
+pyproject.toml:
+[build-system]
+requires = ["setuptools", "wheel"]
+
+[project]
+name = "dumansizelecek"
+version = "1.0.0"
+description = "Dumansız Gelecek - Android WebView Wrapper"
+authors = [{name = "Dumansız Gelecek", email = "info@dumansiz.org"}]
+requires-python = ">=3.8"
+dependencies = [
+    "pyjnius",
+    "android",
+]
+
+[tool.briefcase]
+project_name = "Dumansız Gelecek"
+bundle = "org.dumansiz"
+url = "https://dumansiz.org"
+license = "Apache 2.0"
+author = "Dumansız Gelecek"
+author_email = "info@dumansiz.org"
+description = "Android uygulaması - Dumansız Gelecek"
+
+[tool.briefcase.app.dumansizelecek]
+formal_name = "Dumansız Gelecek"
+description = "Android uygulaması - Dumansız Gelecek"
+sources = ["src"]
+module_name = "dumansizelecek"
+startup_method = "app.main"
+requires = [
+    "pyjnius",
+    "android",
+]
+
+# Android özel ayarlar
+[tool.briefcase.app.dumansizelecek.android]
+permission = ["INTERNET", "ACCESS_NETWORK_STATE"]
+orientation = "portrait"
+min_sdk_version = 21
+target_sdk_version = 31
+build_tool_version = "31.0.0"
+ndk_version = "25.1.8937393"
+
+Briefcase Log:
+[14:29:10] Saving log... started                                                                                                                                      console.py:543
+
+Main thread traceback:
+╭─────────────────────────────────────────────────────────────────────── Traceback (most recent call last) ────────────────────────────────────────────────────────────────────────╮
+│ c:\Users\Casper\OneDrive\Desktop\dumansiz-gelecek\.venv\Lib\site-packages\briefcase\__main__.py:23 in main                                                                       │
+│                                                                                                                                                                                  │
+│   20 │   │   Command, extra_cmdline = parse_cmdline(sys.argv[1:], console=console)                                                                                               │
+│   21 │   │   command = Command(console=console)                                                                                                                                  │
+│   22 │   │   options, overrides = command.parse_options(extra=extra_cmdline)                                                                                                     │
+│ ❱ 23 │   │   command.parse_config(                                                                                                                                               │
+│   24 │   │   │   Path.cwd() / "pyproject.toml",                                                                                                                                  │
+│   25 │   │   │   overrides=overrides,                                                                                                                                            │
+│   26 │   │   )                                                                                                                                                                   │
+│                                                                                                                                                                                  │
+│ ╭─────────────────────────────────────────────── locals ────────────────────────────────────────────────╮                                                                        │
+│ │       command = <briefcase.platforms.android.gradle.GradleCreateCommand object at 0x0000021DD8178770> │                                                                        │
+│ │       console = <briefcase.console.Console object at 0x0000021DD4F65640>                              │                                                                        │
+│ │ extra_cmdline = []                                                                                    │                                                                        │
+│ │       options = {}                                                                                    │                                                                        │
+│ │     overrides = {}                                                                                    │                                                                        │
+│ │        result = 0                                                                                     │                                                                        │
+│ ╰───────────────────────────────────────────────────────────────────────────────────────────────────────╯                                                                        │
+│                                                                                                                                                                                  │
+│ c:\Users\Casper\OneDrive\Desktop\dumansiz-gelecek\.venv\Lib\site-packages\briefcase\commands\base.py:1109 in parse_config                                                        │
+│                                                                                                                                                                                  │
+│   1106 │   │   │   # Parse the content of the pyproject.toml file, extracting                                                                                                    │
+│   1107 │   │   │   # any platform and output format configuration for each app,                                                                                                  │
+│   1108 │   │   │   # creating a single set of configuration options.                                                                                                             │
+│ ❱ 1109 │   │   │   global_config, app_configs = parse_config(                                                                                                                    │
+│   1110 │   │   │   │   filename,                                                                                                                                                 │
+│   1111 │   │   │   │   platform=self.platform,                                                                                                                                   │
+│   1112 │   │   │   │   output_format=self.output_format,                                                                                                                         │
+│                                                                                                                                                                                  │
+│ ╭───────────────────────────────────────────── locals ──────────────────────────────────────────────╮                                                                            │
+│ │  filename = WindowsPath('C:/Users/Casper/OneDrive/Desktop/dumansiz-gelecek/pyproject.toml')       │                                                                            │
+│ │ overrides = {}                                                                                    │                                                                            │
+│ │      self = <briefcase.platforms.android.gradle.GradleCreateCommand object at 0x0000021DD8178770> │                                                                            │
+│ ╰───────────────────────────────────────────────────────────────────────────────────────────────────╯                                                                            │
+│                                                                                                                                                                                  │
+│ c:\Users\Casper\OneDrive\Desktop\dumansiz-gelecek\.venv\Lib\site-packages\briefcase\config.py:1400 in parse_config                                                               │
+│                                                                                                                                                                                  │
+│   1397 │   │   │   │   │   # If the platform matches the requested format, preserve                                                                                              │
+│   1398 │   │   │   │   │   # it for later use.                                                                                                                                   │
+│   1399 │   │   │   │   │   platform_data = platform_block                                                                                                                        │
+│ ❱ 1400 │   │   │   │   │   merge_config(platform_data, platform_data)                                                                                                            │
+│   1401 │   │   │   │   │                                                                                                                                                         │
+│   1402 │   │   │   │   │   # The platform configuration will contain a section                                                                                                   │
+│   1403 │   │   │   │   │   # for each configured output format. Iterate over all                                                                                                 │
+│                                                                                                                                                                                  │
+│ ╭────────────────────────────────────────────────────── locals ───────────────────────────────────────────────────────╮                                                          │
+│ │       all_apps = {                                                                                                  │                                                          │
+│ │                  │   'dumansizelecek': {                                                                            │                                                          │
+│ │                  │   │   'formal_name': 'Dumansız Gelecek',                                                         │                                                          │
+│ │                  │   │   'description': 'Android uygulaması - Dumansız Gelecek',                                    │                                                          │
+│ │                  │   │   'sources': ['src'],                                                                        │                                                          │
+│ │                  │   │   'module_name': 'dumansizelecek',                                                           │                                                          │
+│ │                  │   │   'startup_method': 'app.main',                                                              │                                                          │
+│ │                  │   │   'requires': ['pyjnius', 'android']                                                         │                                                          │
+│ │                  │   }                                                                                              │                                                          │
+│ │                  }                                                                                                  │                                                          │
+│ │    all_formats = ['gradle']                                                                                         │                                                          │
+│ │  all_platforms = ['android', 'iOS', 'linux', 'macOS', 'web', 'windows']                                             │                                                          │
+│ │    app_configs = {}                                                                                                 │                                                          │
+│ │       app_data = {                                                                                                  │                                                          │
+│ │                  │   'formal_name': 'Dumansız Gelecek',                                                             │                                                          │
+│ │                  │   'description': 'Android uygulaması - Dumansız Gelecek',                                        │                                                          │
+│ │                  │   'sources': ['src'],                                                                            │                                                          │
+│ │                  │   'module_name': 'dumansizelecek',                                                               │                                                          │
+│ │                  │   'startup_method': 'app.main',                                                                  │                                                          │
+│ │                  │   'requires': ['pyjnius', 'android']                                                             │                                                          │
+│ │                  }                                                                                                  │                                                          │
+│ │       app_name = 'dumansizelecek'                                                                                   │                                                          │
+│ │      base_path = WindowsPath('C:/Users/Casper/OneDrive/Desktop/dumansiz-gelecek')                                   │                                                          │
+│ │    config_file = WindowsPath('C:/Users/Casper/OneDrive/Desktop/dumansiz-gelecek/pyproject.toml')                    │                                                          │
+│ │        console = <briefcase.console.Console object at 0x0000021DD4F65640>                                           │                                                          │
+│ │        dynamic = []                                                                                                 │                                                          │
+│ │              f = <_io.BufferedReader name='C:\\Users\\Casper\\OneDrive\\Desktop\\dumansiz-gelecek\\pyproject.toml'> │                                                          │
+│ │  global_config = {                                                                                                  │                                                          │
+│ │                  │   'project_name': 'Dumansız Gelecek',                                                            │                                                          │
+│ │                  │   'bundle': 'org.dumansiz',                                                                      │                                                          │
+│ │                  │   'url': 'https://dumansiz.org',                                                                 │                                                          │
+│ │                  │   'license': 'Apache 2.0',                                                                       │                                                          │
+│ │                  │   'author': 'Dumansız Gelecek',                                                                  │                                                          │
+│ │                  │   'author_email': 'info@dumansiz.org',                                                           │                                                          │
+│ │                  │   'description': 'Android uygulaması - Dumansız Gelecek',                                        │                                                          │
+│ │                  │   'requires_python': '>=3.8',                                                                    │                                                          │
+│ │                  │   'version': '1.0.0',                                                                            │                                                          │
+│ │                  │   'requires': ['pyjnius', 'android']                                                             │                                                          │
+│ │                  }                                                                                                  │                                                          │
+│ │  output_format = 'gradle'                                                                                           │                                                          │
+│ │              p = 'android'                                                                                          │                                                          │
+│ │  pep621_config = {                                                                                                  │                                                          │
+│ │                  │   'name': 'dumansizelecek',                                                                      │                                                          │
+│ │                  │   'version': '1.0.0',                                                                            │                                                          │
+│ │                  │   'description': 'Dumansız Gelecek - Android WebView Wrapper',                                   │                                                          │
+│ │                  │   'authors': [{'name': 'Dumansız Gelecek', 'email': 'info@dumansiz.org'}],                       │                                                          │
+│ │                  │   'requires-python': '>=3.8',                                                                    │                                                          │
+│ │                  │   'dependencies': ['pyjnius', 'android']                                                         │                                                          │
+│ │                  }                                                                                                  │                                                          │
+│ │       platform = 'android'                                                                                          │                                                          │
+│ │ platform_block = {                                                                                                  │                                                          │
+│ │                  │   'orientation': 'portrait',                                                                     │                                                          │
+│ │                  │   'min_sdk_version': 21,                                                                         │                                                          │
+│ │                  │   'target_sdk_version': 31,                                                                      │                                                          │
+│ │                  │   'build_tool_version': '31.0.0',                                                                │                                                          │
+│ │                  │   'ndk_version': '25.1.8937393',                                                                 │                                                          │
+│ │                  │   'permission': {}                                                                               │                                                          │
+│ │                  }                                                                                                  │                                                          │
+│ │  platform_data = {                                                                                                  │                                                          │
+│ │                  │   'orientation': 'portrait',                                                                     │                                                          │
+│ │                  │   'min_sdk_version': 21,                                                                         │                                                          │
+│ │                  │   'target_sdk_version': 31,                                                                      │                                                          │
+│ │                  │   'build_tool_version': '31.0.0',                                                                │                                                          │
+│ │                  │   'ndk_version': '25.1.8937393',                                                                 │                                                          │
+│ │                  │   'permission': {}                                                                               │                                                          │
+│ │                  }                                                                                                  │                                                          │
+│ │      pyproject = {                                                                                                  │                                                          │
+│ │                  │   'build-system': {'requires': ['setuptools', 'wheel']},                                         │                                                          │
+│ │                  │   'project': {                                                                                   │                                                          │
+│ │                  │   │   'name': 'dumansizelecek',                                                                  │                                                          │
+│ │                  │   │   'version': '1.0.0',                                                                        │                                                          │
+│ │                  │   │   'description': 'Dumansız Gelecek - Android WebView Wrapper',                               │                                                          │
+│ │                  │   │   'authors': [{'name': 'Dumansız Gelecek', 'email': 'info@dumansiz.org'}],                   │                                                          │
+│ │                  │   │   'requires-python': '>=3.8',                                                                │                                                          │
+│ │                  │   │   'dependencies': ['pyjnius', 'android']                                                     │                                                          │
+│ │                  │   },                                                                                             │                                                          │
+│ │                  │   'tool': {                                                                                      │                                                          │
+│ │                  │   │   'briefcase': {                                                                             │                                                          │
+│ │                  │   │   │   'project_name': 'Dumansız Gelecek',                                                    │                                                          │
+│ │                  │   │   │   'bundle': 'org.dumansiz',                                                              │                                                          │
+│ │                  │   │   │   'url': 'https://dumansiz.org',                                                         │                                                          │
+│ │                  │   │   │   'license': 'Apache 2.0',                                                               │                                                          │
+│ │                  │   │   │   'author': 'Dumansız Gelecek',                                                          │                                                          │
+│ │                  │   │   │   'author_email': 'info@dumansiz.org',                                                   │                                                          │
+│ │                  │   │   │   'description': 'Android uygulaması - Dumansız Gelecek',                                │                                                          │
+│ │                  │   │   │   'requires_python': '>=3.8',                                                            │                                                          │
+│ │                  │   │   │   'version': '1.0.0',                                                                    │                                                          │
+│ │                  │   │   │   'requires': ['pyjnius', 'android']                                                     │                                                          │
+│ │                  │   │   }                                                                                          │                                                          │
+│ │                  │   }                                                                                              │                                                          │
+│ │                  }                                                                                                  │                                                          │
+│ ╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯                                                          │
+│                                                                                                                                                                                  │
+│ c:\Users\Casper\OneDrive\Desktop\dumansiz-gelecek\.venv\Lib\site-packages\briefcase\config.py:745 in merge_config                                                                │
+│                                                                                                                                                                                  │
+│    742 │   │   value = data.pop(option, {})                                                                                                                                      │
+│    743 │   │                                                                                                                                                                     │
+│    744 │   │   if value:                                                                                                                                                         │
+│ ❱  745 │   │   │   config.setdefault(option, {}).update(value)                                                                                                                   │
+│    746 │                                                                                                                                                                         │
+│    747 │   config.update(data)                                                                                                                                                   │
+│    748                                                                                                                                                                           │
+│                                                                                                                                                                                  │
+│ ╭──────────────────────────────────────────────────────────────────────────────── locals ────────────────────────────────────────────────────────────────────────────────╮       │
+│ │ config = {'orientation': 'portrait', 'min_sdk_version': 21, 'target_sdk_version': 31, 'build_tool_version': '31.0.0', 'ndk_version': '25.1.8937393', 'permission': {}} │       │
+│ │   data = {'orientation': 'portrait', 'min_sdk_version': 21, 'target_sdk_version': 31, 'build_tool_version': '31.0.0', 'ndk_version': '25.1.8937393', 'permission': {}} │       │
+│ │ option = 'permission'                                                                                                                                                  │       │
+│ │  value = ['INTERNET', 'ACCESS_NETWORK_STATE']                                                                                                                          │       │
+│ ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯       │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+ValueError: dictionary update sequence element #0 has length 8; 2 is required
