@@ -23,7 +23,7 @@ Bu proje Python kodunu Kivy + Buildozer kullanarak Android APK uygulamasına dö
 ### Seçenek 3: GitHub Actions (Latest Build)
 1. Repo → **Actions** tab
 2. Son **"Build APK"** workflow'u aç
-3. **Artifacts** → `dumansizelecek-apk` indir
+3. **Artifacts** → `app-debug.apk` indir
 
 ---
 
