@@ -8,6 +8,7 @@ __pycache__/
 .buildozer/
 .gradle/
 *.apk
+!app-debug.apk
 *.aab
 .idea/
 *.swp
