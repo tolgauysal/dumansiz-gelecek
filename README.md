@@ -31,7 +31,6 @@ Bu proje Python kodunu Kivy + Buildozer kullanarak Android APK uygulamasına dö
 
 ✅ **WebView Tabanlı** - Hafif ve hızlı  
 ✅ **Responsive Tasarım** - Tüm ekran boyutlarında çalışır  
-✅ **Kivy Framework** - Python → Android otomatik derleme  
 ✅ **İnternet Gerekli** - Web sitesine erişim için  
 ✅ **Portrait Mode** - Mobil optimized  
 ✅ **Tüm Android Cihazlar** - Min API 21 (Android 5.0+)  
@@ -43,7 +42,6 @@ Bu proje Python kodunu Kivy + Buildozer kullanarak Android APK uygulamasına dö
 ## 📋 Sistem Gereksinimleri
 
 ### Android Cihaz:
-- **Min API**: 21 (Android 5.0 Lollipop)
 - **Target API**: 31 (Android 12)
 - **RAM**: 256 MB minimum
 - **Depolama**: ~60 MB
@@ -84,53 +82,8 @@ Ayarlar → Güvenlik → "Bilinmeyen Kaynaktan Yükleme" → AÇ
 - Pull Request → `main` branch'e
 - Tag oluşturma → `v*` (Release oluşturur)
 
-### Workflow Adımları
-1. ✅ Ubuntu 22.04 başlatır
-2. ✅ Python 3.11 yükler
-3. ✅ Android SDK + NDK kurar
-4. ✅ Kivy + Buildozer yükler
-5. ✅ APK derler
-6. ✅ Artifacts'a yükler
-7. ✅ Release oluşturur (tag varsa)
 
-### Push Etmek İçin:
-```bash
-git add .
-git commit -m "Dumansız Gelecek güncelleme"
-git push origin main
-```
 
-### Release Oluşturmak İçin (Sürüm Etiketiyle):
-```bash
-git tag v1.0.1
-git push origin v1.0.1
-```
-
----
-
-## 📁 Dosya Yapısı
-
-```
-dumansiz-gelecek/
-├── main.py                  # Ana Kivy uygulaması
-├── buildozer.spec           # Android derleme config
-├── requirements.txt         # Python bağımlılıkları
-├── pyproject.toml           # BeeWare config (opsiyonel)
-├── docs/
-│   └── index.html           # Web sitesi + APK indir (GitHub Pages)
-├── src/
-│   └── dumansizelecek/
-│       ├── __init__.py
-│       └── app.py           # BeeWare app config
-├── .github/
-│   └── workflows/
-│       └── build.yml        # GitHub Actions CI/CD
-├── bin/                     # Derlenmiş APK'lar (lokal)
-├── .gitignore               # Git ignore rules
-└── README.md                # Bu dosya
-```
-
----
 
 ## 🌐 Web Sitesi (GitHub Pages)
 
@@ -145,62 +98,11 @@ dumansiz-gelecek/
 
 ---
 
-## 💻 Manuel APK Build (Opsiyonel)
 
-### Linux / macOS:
-```bash
-# Gerekli paketler
-sudo apt-get install -y build-essential openjdk-17-jdk cython python3-dev
 
-# Buildozer + Kivy yükle
-pip install buildozer kivy
-
-# Repository'yi klonla
-git clone https://github.com/tolgauysal/dumansiz-gelecek.git
-cd dumansiz-gelecek
-
-# APK build
-buildozer android release
-
-# APK bin/ klasöründe oluşur
-ls bin/
-```
-
-### Windows:
-Windows'ta doğrudan derleme karmaşıktır.
-
-**Seçenek 1 (Önerilen)**: GitHub Actions kullanın
-- Repo'ya push edin
-- Actions otomatik derler
-- APK indir
-
-**Seçenek 2 (Uzun)**: WSL 2 kullanın
-```powershell
-# WSL 2 kur
-wsl --install -d Ubuntu-22.04
-
-# WSL'de
-wsl
-cd /mnt/c/Users/USERNAME/Desktop/dumansiz-gelecek
-# Yukarıdaki Linux komutlarını çalıştır
-```
-
----
-
-## 🔗 Teknoloji Stack
-
-- **Kivy 2.2.1** - Python GUI Framework
-- **Buildozer 1.6.0** - Android APK derleme aracı
-- **Python 3.11** - Programming language
-- **GitHub Actions** - CI/CD Pipeline
-- **Android SDK 31** - Android framework
-- **NDK 25.1** - Native Development Kit
-
----
 
 ## 📞 Bağlantılar
 
-- **Web**: https://dumansiz.org
 - **GitHub Repo**: https://github.com/tolgauysal/dumansiz-gelecek
 - **Site URL**: https://tolgauysal.github.io/dumansiz-gelecek/
 - **GitHub Pages**: docs/index.html
@@ -249,20 +151,6 @@ Apache License 2.0 - [LICENSE](LICENSE) dosyasını incele
 
 ---
 
-## 🤝 Katkı
 
-Bu proje açık kaynaktır. Katkı sağlamak istersen:
-
-1. Repository'yi fork et
-2. Feature branch'i oluştur (`git checkout -b feature/AmazingFeature`)
-3. Değişiklikleri commit et (`git commit -m 'Add some AmazingFeature'`)
-4. Branch'a push et (`git push origin feature/AmazingFeature`)
-5. Pull Request oluştur
-
----
-
-**Son Güncelleme**: 2 Haziran 2026  
-**Sürüm**: 1.0.0  
-**Durum**: ✅ Aktif Geliştirme
 
 🎉 APK İndirdiğin için teşekkürler! Uygulamayı seversen ⭐ ver!
