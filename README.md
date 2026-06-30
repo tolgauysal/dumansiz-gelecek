@@ -2,8 +2,6 @@
 
 **Dumansız Gelecek web uygulamasını Android telefonunuzda kullanın!**
 
-Bu proje Python kodunu Kivy + Buildozer kullanarak Android APK uygulamasına dönüştürür.
-
 ---
 
 ## 📥 APK İNDİR
@@ -48,7 +46,6 @@ Bu proje Python kodunu Kivy + Buildozer kullanarak Android APK uygulamasına dö
 - **İnternet**: Gerekli ✅
 
 ### Bilgisayar (Derleme İçin - Opsiyonel):
-- Python 3.8+
 - Java JDK 11+
 - Android SDK + NDK
 - Gradle
@@ -147,7 +144,7 @@ Apache License 2.0 - [LICENSE](LICENSE) dosyasını incele
 **Tolga Uysal**
 - GitHub: [@tolgauysal](https://github.com/tolgauysal)
 - Email: tolgauysal@gmail.com
-- Web: https://dumansiz.org
+- Web: https://tolgauysal.github.io/dumansiz-gelecek/
 
 ---
 
