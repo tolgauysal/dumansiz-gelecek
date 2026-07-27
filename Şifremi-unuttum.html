@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şifremi Unuttum - Dumansız Gelecek</title>
+
+    <!-- Fontlar & İkonlar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://tolgauysal.github.io/dumansiz-gelecek/favicon.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Toast Bildirim Konteyneri -->
+    <div id="toast-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
+
+    <!-- EmailJS Entegrasyonu -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("d4bni8zW2zAMMktFE"); // EmailJS Public Key
+       })();
+    </script>
+</head>
+<body>
+
+    <!-- TEKNOFEST BANNER -->
+    <div class="tf-banner" id="teknofestBanner">
+        <p>🇹🇷 TEKNOFEST 2026 | İNSANLIK YARARINA TEKNOLOJİ YARIŞMASI</p>
+        <button onclick="closeBanner()" style="background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 5px;">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <!-- ÜST MENÜ -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" style="text-decoration: none;">
+                <img src="/dumansız-gelecek-logo.png" alt="Dumansız Gelecek Logo" class="logo">
+            </a>
+            <div class="nav-auth">
+                <a href="index.html" class="btn btn-outline">
+                    <i class="fa-solid fa-arrow-left"></i> Ana Sayfaya Dön
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ŞİFRE SIFIRLAMA FORMU ALANI -->
+    <div class="container" style="min-height: 70vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px;">
+        <div class="card" style="width: 100%; max-width: 450px; border: 2px solid var(--primary-dark);">
+            <div style="text-align: center; margin-bottom: 25px;">
+                <i class="fa-solid fa-key" style="font-size: 3rem; color: var(--primary-light); margin-bottom: 15px;"></i>
+                <h2 style="font-size: 1.6rem; font-weight: 700;">Şifre Yenileme</h2>
+                <p id="formSubtitle" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">
+                    Hesabınıza ait e-posta adresinizi girin. Size 6 haneli doğrulama kodu göndereceğiz.
+                </p>
+            </div>
+
+            <!-- ADIM 1: E-POSTA GİRİŞİ VE KOD İSTEME -->
+            <form id="requestCodeForm" onsubmit="handleRequestCode(event)">
+                <div class="form-group">
+                    <label for="resetEmail"><i class="fa-solid fa-envelope"></i> E-Posta Adresi</label>
+                    <input type="email" id="resetEmail" class="form-control" placeholder="ornek@mail.com" required>
+                </div>
+
+                <button type="submit" id="btnSendCode" class="btn btn-primary" style="width: 100%; margin-top: 15px; padding: 12px;">
+                    <i class="fa-solid fa-paper-plane"></i> Doğrulama Kodu Gönder
+                </button>
+            </form>
+
+            <!-- ADIM 2: KOD VE YENİ ŞİFRE GİRİŞİ (Başlangıçta gizli) -->
+            <form id="verifyCodeForm" onsubmit="handleResetPassword(event)" style="display: none;">
+                <div class="form-group">
+                    <label for="inputCode"><i class="fa-solid fa-shield-halved"></i> 6 Haneli Doğrulama Kodu</label>
+                    <input type="text" id="inputCode" class="form-control" placeholder="123456" maxlength="6" required style="letter-spacing: 4px; font-weight: bold; text-align: center; font-size: 1.2rem;">
+                </div>
+
+                <div class="form-group" style="margin-top: 15px;">
+                    <label for="newPassword"><i class="fa-solid fa-lock"></i> Yeni Şifre</label>
+                    <input type="password" id="newPassword" class="form-control" placeholder="******" required>
+                </div>
+
+                <div class="form-group" style="margin-top: 15px;">
+                    <label for="confirmPassword"><i class="fa-solid fa-lock"></i> Yeni Şifre (Tekrar)</label>
+                    <input type="password" id="confirmPassword" class="form-control" placeholder="******" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; padding: 12px;">
+                    <i class="fa-solid fa-check-double"></i> Şifreyi Güncelle
+                </button>
+
+                <button type="button" onclick="resetToStepOne()" class="btn btn-outline" style="width: 100%; margin-top: 10px; padding: 8px; font-size: 0.85rem;">
+                    Farklı E-Posta Dene
+                </button>
+            </form>
+
+            <div style="text-align: center; margin-top: 20px; font-size: 0.85rem;">
+                <a href="index.html" style="color: var(--text-muted); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--primary-light)'" onmouseout="this.style.color='var(--text-muted)'">
+                    Giriş Yap ekranına geri dön
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo"><i class="fa-solid fa-fire-flame-curved"></i> Dumansız Gelecek</div>
+        
+        <div class="yesilay-box">
+            <div class="yesilay-badge">
+                <i class="fa-solid fa-leaf"></i> YEŞİLAY
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-main); margin: 0;">
+                Sigara ve madde bağımlılığıyla mücadelede uzman desteği için <strong>YEDAM (115)</strong> Yeşilay Danışmanlık Merkezi'nden ücretsiz yardım alabilirsiniz.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <a href="https://www.yesilay.org.tr/" target="_blank" class="btn btn-yesilay">
+                <i class="fa-solid fa-leaf"></i> Yeşilay Resmi Web Sitesi
+            </a>
+            <a href="https://github.com/tolgauysal" target="_blank" class="btn btn-outline">
+                <i class="fa-brands fa-github"></i> Github Tolga Uysal
+            </a>
+            <a href="https://github.com/volkan560" target="_blank" class="btn btn-outline">
+                <i class="fa-brands fa-github"></i> Github Volkan Mutlu
+            </a>
+            <a href="https://tolgauysal.github.io/dumansiz-gelecek/app-debug.apk" download class="btn btn-primary" style="width: auto;">
+                <i class="fa-solid fa-download"></i> Android Uygulamayı İndir
+            </a>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); max-width: 600px; margin: 0 auto;">Bu yazılım projesi, <strong>TEKNOFEST 2026</strong> İnsanlık Yararına Teknoloji - Sağlık ve İlk Yardım kategorisi için geliştirilmiştir.</p>
+        <p class="copyright">&copy; 25.05.2026 | Kodlama ve Tasarım: Tolga Uysal & Volkan Mutlu | Milli Teknoloji Hamlesi</p>
+    </footer>
+
+    <!-- SCRIPT / MANTIK -->
+    <script>
+        let generatedCode = null;
+        let targetEmail = "";
+
+        // Banner Kapatma İşlevi
+        function closeBanner() {
+            const banner = document.getElementById('teknofestBanner');
+            if (banner) {
+                banner.style.opacity = '0';
+                banner.style.maxHeight = '0';
+                banner.style.padding = '0';
+                setTimeout(() => { banner.style.display = 'none'; }, 300);
+            }
+        }
+
+        // Toast Bildirimi Gösterme
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            if(!container) return;
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            let iconClass = type === 'warning' ? 'fa-triangle-exclamation' : 'fa-check-circle';
+            
+            toast.innerHTML = `<i class="fa-solid ${iconClass}"></i><span>${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
+        }
+
+        // ADIM 1: KOD ÜRET VE E-POSTA İLE GÖNDER
+        async function handleRequestCode(e) {
+            e.preventDefault();
+            targetEmail = document.getElementById('resetEmail').value.trim();
+
+            // 6 Haneli Rastgele Sayı Üret
+            generatedCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+            showToast('Doğrulama kodu e-posta adresinize gönderiliyor...', 'warning');
+
+            // EmailJS Parametreleri
+            const templateParams = {
+                user_email: targetEmail,
+                message: `Dumansız Gelecek Şifre Sıfırlama Kodunuz: ${generatedCode}`
+            };
+
+            try {
+                if (typeof emailjs !== 'undefined') {
+                    await emailjs.send('service_hz7q51g', 'template_kov6opk', templateParams);
+                }
+
+                showToast('6 haneli kod e-postanıza gönderildi!', 'success');
+
+                // Arayüzü 2. Adıma Geçir
+                document.getElementById('requestCodeForm').style.display = 'none';
+                document.getElementById('verifyCodeForm').style.display = 'block';
+                document.getElementById('formSubtitle').innerText = `${targetEmail} adresine gönderilen 6 haneli kodu ve yeni şifrenizi girin.`;
+
+            } catch (error) {
+                console.error('EmailJS Hatası:', error);
+                // Demo ortamlarında EmailJS gönderilemese bile testi sürdürebilmek için:
+                showToast(`Kod gönderildi (Demo Kod: ${generatedCode})`, 'success');
+                document.getElementById('requestCodeForm').style.display = 'none';
+                document.getElementById('verifyCodeForm').style.display = 'block';
+            }
+        }
+
+        // ADIM 2: KODU DOĞRULA VE VERİ TABANINDA ŞİFREYİ GÜNCELLE
+        async function handleResetPassword(e) {
+            e.preventDefault();
+
+            const inputCode = document.getElementById('inputCode').value.trim();
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Kontroller
+            if (inputCode !== generatedCode) {
+                showToast('Girdiğiniz 6 haneli doğrulama kodu yanlış!', 'warning');
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                showToast('Yeni şifreler birbiriyle eşleşmiyor!', 'warning');
+                return;
+            }
+
+            try {
+                // Node.js Backend API'sine Şifre Sıfırlama İsteği
+                const res = await fetch('/api/reset-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: targetEmail, newPassword: newPassword })
+                });
+
+                const data = await res.json();
+
+                if (!data.success) {
+                    showToast(data.message || 'Şifre güncellenemedi.', 'warning');
+                    return;
+                }
+
+                showToast('Şifreniz başarıyla değiştirildi! Giriş ekranına yönlendiriliyorsunuz...', 'success');
+
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+
+            } catch (err) {
+                console.error(err);
+                showToast('Sunucu bağlantı hatası. Node.js sunucusunu kontrol edin.', 'warning');
+            }
+        }
+
+        function resetToStepOne() {
+            document.getElementById('requestCodeForm').style.display = 'block';
+            document.getElementById('verifyCodeForm').style.display = 'none';
+            document.getElementById('formSubtitle').innerText = 'Hesabınıza ait e-posta adresinizi girin. Size 6 haneli doğrulama kodu göndereceğiz.';
+            generatedCode = null;
+        }
+    </script>
+</body>
+</html>
