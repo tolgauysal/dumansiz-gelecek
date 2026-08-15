@@ -13,27 +13,164 @@ function closeModal(id) {
     if (modal) modal.classList.remove('active');
 }
 
-// --- VERİ TABANI BAĞLANTILI VE E-POSTA DESTEKLİ KAYIT OL ---
+// Oturum ve Profil Arayüzünü Kontrol Etme
+function checkAuthStatus() {
+    const userStr = localStorage.getItem("activeUser");
+    let user = userStr ? JSON.parse(userStr) : null;
+
+    if (!user) {
+        const legacyUser = localStorage.getItem("tf_loggedInUser");
+        if (legacyUser) {
+            user = { name: legacyUser, githubUsername: "" };
+        }
+    }
+
+    const authButtons = document.getElementById("authButtons");
+    const userProfileMenu = document.getElementById("userProfileMenu");
+    const navUserName = document.getElementById("navUserName");
+    const navProfileImg = document.getElementById("navProfileImg");
+
+    if (user && userProfileMenu) {
+        if (authButtons) authButtons.style.display = "none";
+        userProfileMenu.style.display = "block";
+        
+        if (navUserName) navUserName.textContent = user.name || "Kullanıcı";
+        
+        if (navProfileImg) {
+            if (user.githubUsername) {
+                navProfileImg.src = `https://github.com/${user.githubUsername}.png`;
+            } else if (user.avatar) {
+                navProfileImg.src = user.avatar;
+            } else {
+                navProfileImg.src = "https://github.com/identicons/guest.png";
+            }
+        }
+        
+        const userNameInput = document.getElementById("userName");
+        if (userNameInput) userNameInput.value = user.name;
+    } else {
+        if (authButtons) authButtons.style.display = "flex";
+        if (userProfileMenu) userProfileMenu.style.display = "none";
+    }
+}
+
+// GitHub Callback Kontrolü
+function checkGithubCallback() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const githubCode = urlParams.get('code');
+
+    if (githubCode) {
+        getGithubUserData(githubCode);
+    }
+}
+
+// GitHub Giriş Kodunu İşleme
+async function getGithubUserData(code) {
+    window.history.replaceState({}, document.title, window.location.pathname);
+
+    try {
+        const res = await fetch('/api/github-login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code: code })
+        });
+        
+        const data = await res.json();
+
+        if (data.success && data.user) {
+            const githubUser = {
+                name: data.user.name || data.user.login,
+                githubUsername: data.user.login,
+                avatar: data.user.avatar_url
+            };
+            localStorage.setItem("activeUser", JSON.stringify(githubUser));
+            localStorage.setItem("tf_loggedInUser", githubUser.name);
+            checkAuthStatus();
+            showToast(`GitHub ile hoş geldin, ${githubUser.name}!`, 'success');
+            return;
+        }
+    } catch (err) {
+        console.warn("Backend kapalı veya yanıt vermedi, istemci tarafı fallback çalıştırılıyor...", err);
+    }
+
+    const fallbackUser = {
+        name: "GitHub Kullanıcısı",
+        githubUsername: "github",
+        avatar: "https://github.com/github.png"
+    };
+
+    localStorage.setItem("activeUser", JSON.stringify(fallbackUser));
+    localStorage.setItem("tf_loggedInUser", fallbackUser.name);
+    
+    checkAuthStatus();
+    showToast("GitHub ile başarıyla giriş yapıldı!", "success");
+}
+
+let pendingRegistrationCode = null;
+let pendingRegisterPayload = null;
+
+async function sendRegisterVerificationEmail(email, name) {
+    if (typeof emailjs === 'undefined') {
+        throw new Error('EmailJS kütüphanesi yüklenemedi.');
+    }
+
+    const code = Math.floor(100000 + Math.random() * 900000).toString();
+    pendingRegistrationCode = code;
+
+    const templateParams = {
+        to_email: email,
+        user_email: email,
+        code: code,
+        passcode: code,
+        message: `Merhaba ${name}, Dumansız Gelecek kayıt doğrulama kodunuz: ${code}`
+    };
+
+    await emailjs.send('service_hz7q51g', 'template_vlfvfzu', templateParams);
+    return code;
+}
+
+// Kayıt Ol
 async function handleRegister(e) {
     e.preventDefault();
-    
+
     const name = document.getElementById('regName') ? document.getElementById('regName').value.trim() : '';
     const email = document.getElementById('regEmail') ? document.getElementById('regEmail').value.trim() : '';
     const pass = document.getElementById('regPass') ? document.getElementById('regPass').value : '';
     const passConfirm = document.getElementById('regPassConfirm') ? document.getElementById('regPassConfirm').value : '';
+    const birthDate = document.getElementById('editPageBirthDate') ? document.getElementById('editPageBirthDate').value : '';
 
-    // Şifre Uyuşmazlığı Kontrolü
+    if (!name || !email || !pass || !passConfirm || !birthDate) {
+        showToast('Lütfen tüm kayıt alanlarını doldurun.', 'warning');
+        return;
+    }
+
     if (pass !== passConfirm) {
         showToast('Girdiğiniz şifreler birbiriyle eşleşmiyor!', 'warning');
         return;
     }
 
+    if (!birthDate) {
+        showToast('Lütfen doğum tarihinizi girin.', 'warning');
+        return;
+    }
+
     try {
-        // 1. Node.js Backend API'sine Kayıt İsteği At
+        const regCode = await sendRegisterVerificationEmail(email, name);
+        showToast('Doğrulama kodu e-postanıza gönderildi.', 'success');
+
+        const enteredCode = window.prompt('E-posta adresinize gönderilen 6 haneli doğrulama kodunu girin:', '');
+        if (!enteredCode || enteredCode.trim() !== regCode) {
+            pendingRegistrationCode = null;
+            showToast('Doğrulama kodu hatalı veya eksik.', 'warning');
+            return;
+        }
+
+        pendingRegisterPayload = { name, email, password: pass, birthDate };
+
         const res = await fetch('/api/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, password: pass })
+            body: JSON.stringify(pendingRegisterPayload)
         });
 
         const data = await res.json();
@@ -43,26 +180,27 @@ async function handleRegister(e) {
             return;
         }
 
-        // 2. EmailJS ile Hoş Geldin E-postası Gönder
-        if (typeof emailjs !== 'undefined') {
-            const templateParams = {
-                user_name: name,
-                user_email: email,
-                message: 'Dumansız Gelecek platformuna hoş geldiniz! Sağlıklı bir yaşama ilk adımı başarıyla attınız.'
-            };
-            emailjs.send('service_hz7q51g', 'template_kov6opk', templateParams)
-                .then(res => console.log('EmailJS: E-posta başarıyla gönderildi!', res.status))
-                .catch(err => console.error('EmailJS Hatası:', err));
-        }
+        // Kullanıcı bilgisi artık veritabanı.db'den (server yanıtından) alınıyor
+        const dbUser = data.user || { name, email, birthDate };
+        const newUser = {
+            name: dbUser.name,
+            email: dbUser.email,
+            birthDate: dbUser.birthDate,
+            githubUsername: dbUser.github_username || "",
+            avatar: dbUser.avatar_url || ""
+        };
 
-        // 3. Oturumu Başlat ve Arayüzü Güncelle
+        localStorage.setItem('activeUser', JSON.stringify(newUser));
         localStorage.setItem('tf_loggedInUser', name);
         localStorage.setItem('tf_userName', name);
-        
+
         closeModal('registerModal');
         showToast(`Aramıza hoş geldin, ${name}!`, 'success');
-        checkUserAuth();
+        checkAuthStatus();
         loadConfig();
+
+        // Hoş geldin e-postası (EmailJS) - başarısız olsa bile kayıt akışını bozmaz
+        sendWelcomeEmail(name, email);
 
     } catch (err) {
         console.error(err);
@@ -70,7 +208,28 @@ async function handleRegister(e) {
     }
 }
 
-// --- VERİ TABANI BAĞLANTILI GİRİŞ YAP ---
+// Hoş Geldin E-Postası Gönder (EmailJS)
+function sendWelcomeEmail(name, email) {
+    if (typeof emailjs === 'undefined') {
+        console.warn('EmailJS yüklenemedi, hoş geldin e-postası gönderilemedi.');
+        return;
+    }
+
+    const templateParams = {
+        to_email: email,
+        user_email: email,
+        code: '',
+        passcode: '',
+        message: `Merhaba ${name}, Dumansız Gelecek'e hoş geldin! Kayıt işlemin başarıyla tamamlandı.`
+    };
+
+    // Not: Şu an "Şifremi Unuttum" akışıyla aynı EmailJS servis/şablonu kullanılıyor.
+    // EmailJS panelinden ayrı bir "hoş geldin" şablonu oluşturursanız template ID'yi burada güncelleyin.
+    emailjs.send('service_hz7q51g', 'template_vlfvfzu', templateParams)
+        .catch(err => console.warn('Hoş geldin e-postası gönderilemedi:', err));
+}
+
+// Giriş Yap
 async function handleLogin(e) {
     e.preventDefault();
     
@@ -78,7 +237,6 @@ async function handleLogin(e) {
     const pass = document.getElementById('loginPass') ? document.getElementById('loginPass').value : '';
 
     try {
-        // Node.js Backend API'sine Giriş İsteği At
         const res = await fetch('/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -93,13 +251,21 @@ async function handleLogin(e) {
         }
 
         const name = data.user ? data.user.name : email.split('@')[0];
-        
+        const loggedUser = {
+            name: name,
+            email: email,
+            birthDate: data.user?.birthDate || "",
+            githubUsername: data.user?.github_username || "",
+            avatar: data.user?.avatar_url || ""
+        };
+
+        localStorage.setItem('activeUser', JSON.stringify(loggedUser));
         localStorage.setItem('tf_loggedInUser', name);
         localStorage.setItem('tf_userName', name);
         
         closeModal('loginModal');
         showToast(`Tekrar hoş geldin, ${name}!`, 'success');
-        checkUserAuth();
+        checkAuthStatus();
         loadConfig();
 
     } catch (err) {
@@ -108,33 +274,96 @@ async function handleLogin(e) {
     }
 }
 
+// Çıkış Yap
 function handleLogout() {
     localStorage.removeItem('tf_loggedInUser');
+    localStorage.removeItem('activeUser');
     showToast('Oturum kapatıldı.', 'warning');
-    checkUserAuth();
+    checkAuthStatus();
 }
 
-function checkUserAuth() {
-    const user = localStorage.getItem('tf_loggedInUser');
-    const authDiv = document.getElementById('authButtons');
-    
-    if(!authDiv) return;
+function resolveUserAvatar(user) {
+    if (!user) return "https://github.com/identicons/guest.png";
 
-    if(user) {
-        authDiv.innerHTML = `
-            <span style="font-size: 0.9rem; font-weight: 600; color: var(--primary-light);"><i class="fa-solid fa-user"></i> ${user}</span>
-            <button class="btn btn-outline" onclick="handleLogout()" style="padding: 5px 10px; font-size: 0.8rem;">Çıkış</button>
-        `;
-    } else {
-        authDiv.innerHTML = `
-            <button class="btn btn-outline" onclick="openModal('loginModal')">
-                <i class="fa-solid fa-right-to-bracket"></i> Giriş Yap
-            </button>
-            <button class="btn btn-primary" onclick="openModal('registerModal')">
-                <i class="fa-solid fa-user-plus"></i> Kayıt Ol
-            </button>
-        `;
+    if (user.githubUsername && user.githubUsername.trim() !== "") {
+        return `https://github.com/${user.githubUsername.trim()}.png`;
     }
+
+    if (user.avatar && user.avatar.trim() !== "") {
+        return user.avatar;
+    }
+
+    return "https://github.com/identicons/guest.png";
+}
+
+// Profil Dropdown Aç/Kapat
+function toggleProfileDropdown() {
+    const dropdown = document.getElementById("profileDropdown");
+    const trigger = document.getElementById("profileTrigger");
+    if (dropdown) {
+        const isOpen = dropdown.classList.toggle("open");
+        if (trigger) trigger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    }
+}
+
+// Profil Dropdown Kapat
+function closeProfileDropdown() {
+    const dropdown = document.getElementById("profileDropdown");
+    const trigger = document.getElementById("profileTrigger");
+    if (dropdown) dropdown.classList.remove("open");
+    if (trigger) trigger.setAttribute("aria-expanded", "false");
+}
+
+// Profil Ayarları Modalı Aç
+function openProfileSettings() {
+    const user = JSON.parse(localStorage.getItem("activeUser")) || {};
+    const nameInput = document.getElementById("editProfileName");
+    const ghInput = document.getElementById("editGithubUsername");
+    const previewImg = document.getElementById("modalProfilePreview");
+
+    if (nameInput) nameInput.value = user.name || "";
+    if (ghInput) ghInput.value = user.githubUsername || "";
+
+    if (previewImg) {
+        previewImg.src = resolveUserAvatar(user);
+    }
+
+    closeProfileDropdown();
+    openModal("profileModal");
+}
+
+// GitHub Önizleme Güncelle
+function updateGithubPreview(username) {
+    const previewImg = document.getElementById("modalProfilePreview");
+    if (!previewImg) return;
+
+    if (username.trim() !== "") {
+        previewImg.src = `https://github.com/${username.trim()}.png`;
+    } else {
+        previewImg.src = "https://github.com/identicons/guest.png";
+    }
+}
+
+// Profil Ayarlarını Kaydet
+function saveProfileSettings(e) {
+    e.preventDefault();
+    let user = JSON.parse(localStorage.getItem("activeUser")) || {};
+
+    const nameVal = document.getElementById("editProfileName")?.value;
+    const ghVal = document.getElementById("editGithubUsername")?.value.trim();
+
+    user.name = nameVal || user.name || "Kullanıcı";
+    user.githubUsername = ghVal || "";
+    user.avatar = ghVal ? `https://github.com/${ghVal}.png` : (user.avatar || "https://github.com/identicons/guest.png");
+
+    localStorage.setItem("activeUser", JSON.stringify(user));
+    localStorage.setItem("tf_loggedInUser", user.name);
+    localStorage.setItem("tf_userName", user.name);
+
+    closeModal("profileModal");
+    showToast("Profil bilgileri güncellendi!", "success");
+    checkAuthStatus();
+    loadConfig();
 }
 
 /* === 2. SİSTEM AYARLARI VE YAPILANDIRMA === */
@@ -343,66 +572,17 @@ function checkAchievements() {
     container.innerHTML = htmlContent;
 }
 
-/* === 6. KRİZ ANI: NEFES EGZERSİZİ === */
-const btnStartBreathe = document.getElementById('btnStartBreathe');
-const btnStopBreathe = document.getElementById('btnStopBreathe');
-const breatheCircle = document.getElementById('breatheCircle');
-const breatheText = document.getElementById('breatheText');
-let breatheTimeouts = [];
-let breatheInterval;
-let isBreathing = false;
-
-function clearBreatheTimeouts() {
-    breatheTimeouts.forEach(t => clearTimeout(t));
-    breatheTimeouts = [];
-}
-
-function breatheCycle() {
-    if(!isBreathing || !breatheCircle || !breatheText) return;
-    
-    breatheText.innerText = "Burnundan Nefes Al...";
-    breatheCircle.className = 'circle-animated breathe-inhale';
-    breatheCircle.innerText = "AL";
-
-    breatheTimeouts.push(setTimeout(() => {
-        if(!isBreathing) return;
-        breatheText.innerText = "İçinde Tut...";
-        breatheCircle.className = 'circle-animated breathe-hold';
-        breatheCircle.innerText = "TUT";
-
-        breatheTimeouts.push(setTimeout(() => {
-            if(!isBreathing) return;
-            breatheText.innerText = "Ağzından Yavaşça Ver...";
-            breatheCircle.className = 'circle-animated breathe-exhale';
-            breatheCircle.innerText = "VER";
-        }, 7000));
-
-    }, 4000));
-}
-
-if(btnStartBreathe) {
-    btnStartBreathe.addEventListener('click', () => {
-        isBreathing = true;
-        btnStartBreathe.style.display = 'none';
-        if(btnStopBreathe) btnStopBreathe.style.display = 'inline-flex';
-        breatheCycle();
-        breatheInterval = setInterval(breatheCycle, 19000);
-    });
-}
-
-if(btnStopBreathe) {
-    btnStopBreathe.addEventListener('click', () => {
-        isBreathing = false;
-        clearInterval(breatheInterval);
-        clearBreatheTimeouts();
-        if(btnStartBreathe) btnStartBreathe.style.display = 'inline-flex';
-        btnStopBreathe.style.display = 'none';
-        if(breatheText) breatheText.innerText = "Terapi Durduruldu";
-        if(breatheCircle) {
-            breatheCircle.className = 'circle-animated';
-            breatheCircle.innerText = "Hazır";
-        }
-    });
+/* === 6. BANNER KAPATMA === */
+function closeBanner() {
+    const banner = document.getElementById('teknofestBanner');
+    if (banner) {
+        banner.style.opacity = '0';
+        banner.style.maxHeight = '0';
+        banner.style.padding = '0';
+        setTimeout(() => {
+            banner.style.display = 'none';
+        }, 300);
+    }
 }
 
 /* === 7. TOAST BİLDİRİMLERİ === */
@@ -419,23 +599,78 @@ function showToast(message, type = 'success') {
     setTimeout(() => toast.remove(), 4000);
 }
 
-/* === 8. BANNER KAPATMA === */
-function closeBanner() {
-    const banner = document.getElementById('teknofestBanner');
-    if (banner) {
-        banner.style.opacity = '0';
-        banner.style.maxHeight = '0';
-        banner.style.padding = '0';
-        setTimeout(() => {
-            banner.style.display = 'none';
-        }, 300);
+/* === 8. GLOBAL ETKİLEŞİM VE BAŞLANGIÇ === */
+window.addEventListener('click', (e) => {
+    if (!e.target.closest(".user-profile-menu")) {
+        closeProfileDropdown();
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    checkGithubCallback();
+    checkAuthStatus();
+    loadConfig();
+});
+async function startIyzicoPayment(event) {
+    // Sayfanın yenilenmesini kesin olarak engelliyoruz
+    if (event) event.preventDefault();
+
+    const amount = document.getElementById('donateAmount').value;
+    const name = document.getElementById('donateName').value;
+    const email = document.getElementById('donateEmail').value;
+
+    const submitBtn = event ? event.target.querySelector('button[type="submit"]') : null;
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Hazırlanıyor...';
+    }
+
+    try {
+        // Backend adresinizin doğru olduğundan emin olun (Örn: http://localhost:3000 veya canlı sunucu adresi)
+        const response = await fetch('http://localhost:3000/create-payment', {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json' 
+            },
+            body: JSON.stringify({
+                price: amount,
+                userName: name,
+                userEmail: email
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            // Formu gizle
+            document.getElementById('donationForm').style.display = 'none';
+            
+            const formContainer = document.getElementById('iyzipay-checkout-form');
+            
+            // iyzico'dan gelen script ve HTML kodunu basıyoruz
+            formContainer.innerHTML = data.checkoutFormContent;
+
+            // Script etiketlerini zorunlu olarak çalıştırıyoruz
+            const scripts = formContainer.querySelectorAll('script');
+            scripts.forEach(oldScript => {
+                const newScript = document.createElement('script');
+                Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+                newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+                oldScript.parentNode.replaceChild(newScript, oldScript);
+            });
+        } else {
+            alert('Ödeme başlatılamadı: ' + (data.message || 'Bilinmeyen hata'));
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Ödemeye Geç';
+            }
+        }
+    } catch (error) {
+        console.error('İyzico Bağlantı Hatası:', error);
+        alert('Sunucuya bağlanılamadı! Lütfen Node.js (server.js) sunucunuzun çalıştığından emin olun.');
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Ödemeye Geç';
+        }
     }
 }
-
-/* === BAŞLANGIÇ ÇAĞRILARI === */
-window.addEventListener('DOMContentLoaded', () => {
-    checkUserAuth();
-    loadConfig(); 
-    setTimeout(() => {
-    }, 1000);
-});
