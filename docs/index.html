@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dumansız Gelecek - Kapsamlı Dokümantasyon & Teknik Rehber</title>
+    <link rel="icon" href="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/005/100/176/datas/original.png" type="image/png">
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-main: #0f172a;
+            --bg-header: #1e293b;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --bg-code: #020617;
+            --primary: #dc2626;
+            --primary-light: #f87171;
+            --primary-dark: #991b1b;
+            --accent: #fbbf24;
+            --success: #10b981;
+            --info: #3b82f6;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --sidebar-width: 300px;
+            --header-height: 70px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            width: 100%;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* Header / Navigasyon */
+        header {
+            height: var(--header-height);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            background-color: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo {
+            height: 42px;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .brand-link:hover .logo {
+            transform: scale(1.05);
+        }
+
+        .docs-badge {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.3), rgba(153, 27, 27, 0.4));
+            color: var(--primary-light);
+            border: 1px solid var(--primary);
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-bar {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 12px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .search-bar input {
+            padding: 9px 14px 9px 36px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            width: 320px;
+            font-size: 0.88rem;
+            outline: none;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            transition: all 0.25s ease;
+        }
+
+        .search-bar input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-bar input:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25);
+            width: 360px;
+        }
+
+        .version-tag {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background-color: var(--bg-main);
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Layout Structure */
+        .layout {
+            display: flex;
+            flex: 1;
+        }
+
+        /* Sidebar */
+        aside {
+            width: var(--sidebar-width);
+            background-color: var(--bg-header);
+            border-right: 1px solid var(--border-color);
+            padding: 1.5rem 1rem;
+            height: calc(100vh - var(--header-height));
+            position: sticky;
+            top: var(--header-height);
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+            z-index: 900;
+        }
+
+        .menu-category {
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 1.8rem 0 0.6rem 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .menu-category:first-child {
+            margin-top: 0;
+        }
+
+        .menu-list {
+            list-style: none;
+        }
+
+        .menu-list a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 14px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            margin-bottom: 2px;
+        }
+
+        .menu-list a i {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .menu-list a:hover {
+            background-color: var(--bg-hover);
+            color: var(--text-main);
+        }
+
+        .menu-list a.active {
+            background: linear-gradient(90deg, rgba(220, 38, 38, 0.2), transparent);
+            color: var(--primary-light);
+            border-left: 3px solid var(--primary);
+            font-weight: 600;
+        }
+
+        .badge-mini {
+            font-size: 0.65rem;
+            background-color: var(--primary);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 3rem 5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.8rem;
+            background-color: var(--bg-card);
+            padding: 8px 16px;
+            border-radius: 8px;
+            width: fit-content;
+            border: 1px solid var(--border-color);
+        }
+
+        .breadcrumb i {
+            font-size: 0.75rem;
+        }
+
+        section {
+            scroll-margin-top: 100px;
+            margin-bottom: 3.5rem;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        main h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        main h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 2.2rem 0 1.2rem 0;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        main h2 i {
+            color: var(--primary-light);
+            font-size: 1.2rem;
+        }
+
+        main h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.8rem 0;
+            color: var(--accent);
+        }
+
+        main p {
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            font-size: 0.98rem;
+        }
+
+        main p strong {
+            color: var(--text-main);
+        }
+
+        /* Custom Cards & Boxes */
+        .info-box {
+            background-color: var(--bg-card);
+            border-left: 4px solid var(--primary);
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.2rem 1.5rem;
+            border-radius: 0 10px 10px 0;
+            margin: 1.8rem 0;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .info-box.success {
+            border-left-color: var(--success);
+        }
+
+        .info-box.warning {
+            border-left-color: var(--accent);
+        }
+
+        .info-box i {
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary-light);
+            box-shadow: 0 12px 20px -5px rgba(0,0,0,0.4);
+        }
+
+        .card h4 {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card p {
+            font-size: 0.88rem;
+            margin-bottom: 0;
+        }
+
+        /* Code Blocks */
+        .code-container {
+            background-color: var(--bg-code);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+        }
+
+        .code-header {
+            background-color: var(--bg-header);
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .copy-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            color: var(--text-main);
+        }
+
+        pre {
+            padding: 1.2rem 1.5rem;
+            overflow-x: auto;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.88rem;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        code {
+            font-family: 'Fira Code', monospace;
+            background-color: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--border-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+
+        /* Interactive Breathing Visualizer */
+        .breathing-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .circle-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .breath-circle {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--primary-light), var(--primary-dark));
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(220, 38, 38, 0.5);
+            transition: all 4s linear;
+        }
+
+        .breath-circle.inhale {
+            transform: scale(1.6);
+            box-shadow: 0 0 50px rgba(239, 68, 68, 0.8);
+        }
+
+        .breath-circle.hold {
+            transform: scale(1.6);
+            background: radial-gradient(circle, var(--accent), #d97706);
+            box-shadow: 0 0 50px rgba(251, 191, 36, 0.8);
+        }
+
+        .breath-circle.exhale {
+            transform: scale(1);
+            background: radial-gradient(circle, var(--success), #047857);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .breath-text {
+            position: absolute;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-light);
+        }
+
+        /* Tables */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        th, td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: var(--bg-header);
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        td code {
+            font-size: 0.8rem;
+        }
+
+        /* Lists */
+        ul.feature-list {
+            margin-left: 1.2rem;
+            margin-bottom: 1.5rem;
+            list-style: none;
+        }
+
+        ul.feature-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.6rem;
+            color: var(--text-muted);
+        }
+
+        ul.feature-list li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--success);
+            font-size: 0.85rem;
+        }
+
+        /* Modal Structure */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-container {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: var(--text-main);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* Legal Accordion / Terms Styling */
+        .legal-block {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .legal-block h3 {
+            margin-top: 0;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 4rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            background-color: var(--bg-header);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            main {
+                padding: 2rem;
+            }
+            .search-bar input {
+                width: 200px;
+            }
+            .search-bar input:focus {
+                width: 230px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            aside {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                transform: translateX(-100%);
+                width: 260px;
+                box-shadow: 10px 0 20px rgba(0,0,0,0.5);
+            }
+
+            aside.open {
+                transform: translateX(0);
+            }
+
+            main {
+                padding: 1.5rem 1rem;
+            }
+
+            header {
+                padding: 0 1rem;
+            }
+
+            .search-bar input {
+                width: 150px;
+            }
+
+            .version-tag {
+                display: none;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <div class="header-left">
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menüyü Aç/Kapat">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <a href="/" class="brand-link">
+                <img src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/005/100/177/datas/original.png" alt="Dumansız Gelecek Logo" class="logo">
+                <span class="docs-badge">Docs</span>
+            </a>
+        </div>
+
+        <div class="header-right">
+            <div class="search-container">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Dokümantasyonda ara... (CTRL+K)">
+                </div>
+            </div>
+            <span class="version-tag">v2.4.0</span>
+        </div>
+    </header>
+
+    <!-- Layout: Sidebar + Main Content -->
+    <div class="layout">
+        
+        <!-- Sol Kenar Menüsü -->
+        <aside id="sidebar">
+            <div class="menu-category"><i class="fa-solid fa-compass"></i> Başlangıç</div>
+            <ul class="menu-list">
+                <li><a href="#giris" class="menu-item active"><span>Proje Hakkında</span></a></li>
+                <li><a href="#mimarisi" class="menu-item"><span>Sistem Mimarisi</span></a></li>
+                <li><a href="#kurulum" class="menu-item"><span>Hızlı Başlangıç</span> <span class="badge-mini">Yeni</span></a></li>
+            </ul>
+
+            <div class="menu-category"><i class="fa-solid fa-cubes"></i> Modüller & Araçlar</div>
+            <ul class="menu-list">
+                <li><a href="#simulator" class="menu-item"><span>Finansal Simülatör</span></a></li>
+                <li><a href="#egzersiz" class="menu-item"><span>4-7-8 Nefes Egzersizi</span></a></li>
+                <li><a href="#ai-koc" class="menu-item"><span>Yapay Zeka Koçu (AI)</span></a></li>
+                <li><a href="#saglik-haritasi" class="menu-item"><span>İyileşme Zaman Çizelgesi</span></a></li>
+            </ul>
+
+            <div class="menu-category"><i class="fa-solid fa-code"></i> Geliştirici & API</div>
+            <ul class="menu-list">
+                <li><a href="#api-ref" class="menu-item"><span>REST API Bağlantıları</span></a></li>
+                <li><a href="#local-storage" class="menu-item"><span>Veri Yönetimi & Cache</span></a></li>
+            </ul>
+
+            <div class="menu-category"><i class="fa-solid fa-shield-halved"></i> Hukuki & Güvenlik</div>
+            <ul class="menu-list">
+                <li><a href="#yesilay" class="menu-item"><span>Yeşilay 115 YEDAM</span></a></li>
+                <li><a href="#kvkk" class="menu-item"><span>KVKK & Veri Güvenliği</span></a></li>
+                <li><a href="#gizlilik-politikasi" class="menu-item"><span>Gizlilik Politikası</span></a></li>
+                <li><a href="#kullanim-sartlari" class="menu-item"><span>Kullanım Şartları</span></a></li>
+                <li><a href="#sss" class="menu-item"><span>Sıkça Sorulan Sorular</span></a></li>
+            </ul>
+        </aside>
+
+        <!-- Sağ Ana İçerik -->
+        <main>
+            <div class="breadcrumb" id="breadcrumb">
+                <i class="fa-solid fa-house"></i>
+                <span>Dokümantasyon</span> / 
+                <span>Başlangıç</span> / 
+                <strong id="currentBreadcrumb">Proje Hakkında</strong>
+            </div>
+
+            <!-- 1. GIRIS -->
+            <section id="giris">
+                <h1>Dumansız Gelecek Dokümantasyonu</h1>
+                <p><strong>Dumansız Gelecek</strong>, TEKNOFEST 2027 İnsanlık Yararına Teknoloji (Sağlık ve İlk Yardım) kategorisi çerçevesinde hayata geçirilmiş bütünsel bir dijital sağlık platformudur[cite: 1, 3]. Bireylerin tütün ve nikotin bağımlılığından kurtulma süreçlerini psikolojik, finansal ve biyolojik açıdan destekler[cite: 1].</p>
+                
+                <div class="info-box">
+                    <i class="fa-solid fa-circle-info" style="color: var(--primary-light);"></i>
+                    <div>
+                        <strong>Kriz Anında Mısınız?</strong><br>
+                        Yoğun nikotin yoksunluğu hissettiğiniz anlarda sol menüdeki <code>4-7-8 Nefes Egzersizi</code> aracını çalıştırabilir ya da doğrudan <strong>115 YEDAM</strong> Yeşilay Danışmanlık Hattı ile iletişime geçebilirsiniz[cite: 1, 3].
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h4><i class="fa-solid fa-chart-line" style="color: var(--success);"></i> Canlı Analiz</h4>
+                        <p>Bırakma anından itibaren geçen süreyi milisaniye hassasiyetinde hesaplar ve tasarruf edilen finansal kaynağı gösterir[cite: 1].</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fa-solid fa-brain" style="color: var(--accent);"></i> AI Motivasyon</h4>
+                        <p>Yapay zeka asistanı, tetikleyici anlarda kullanıcıya özel bilişsel davranışçı terapi (CBT) odaklı tavsiyeler üretir.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. SISTEM MIMARISI -->
+            <section id="mimarisi">
+                <h2><i class="fa-solid fa-sitemap"></i> Sistem Mimarisi</h2>
+                <p>Platform, yüksek performans ve uçtan uca gizlilik prensibiyle istemci tarafında (Client-Side) maksimum iş yükü çalıştıracak şekilde tasarlanmıştır.</p>
+                
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Bileşen</th>
+                                <th>Teknoloji / Yapı</th>
+                                <th>Açıklama</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <li><strong>Frontend Framework</strong></li>
+                                <li><code>HTML5, CSS3, ES6 JS</code></li>
+                                <li>Saf, bağımlılıksız, ultra hızlı yükleme süresi sunan mimari.</li>
+                            </tr>
+                            <tr>
+                                <li><strong>Depolama</strong></li>
+                                <li><code>IndexedDB / LocalStorage</code></li>
+                                <li>Kullanıcı sağlık verileri ve kişisel istatistiklerin yerel saklanması.</li>
+                            </tr>
+                            <tr>
+                                <li><strong>Bildirim Servisi</strong></li>
+                                <li><code>Service Workers & Web Push API</code></li>
+                                <li>Günlük motivasyon mesajları ve kriz uyarısı hatırlatıcıları.</li>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 3. HIZLI BASLANGIC -->
+            <section id="kurulum">
+                <h2><i class="fa-solid fa-rocket"></i> Hızlı Başlangıç & Kullanım</h2>
+                <p>Sistemi web sitenize entegre etmek veya yerel ortamınızda çalıştırmak için aşağıdaki adımları izleyebilirsiniz.</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span><i class="fa-brands fa-bash"></i> Terminal / Git Reposunu Klonlama</span>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Kopyala</button>
+                    </div>
+                    <pre><code># Repozitörü klonlayın
+git clone https://github.com/tolgauysal/dumansiz-gelecek.git
+
+# Proje dizinine geçin
+cd dumansiz-gelecek
+
+# Basit bir HTTP sunucusu ile başlatın
+npx serve .</code></pre>
+                </div>
+            </section>
+
+            <!-- 4. FINANSAL SIMULATOR -->
+            <section id="simulator">
+                <h2><i class="fa-solid fa-calculator"></i> Finansal Simülatör Modülü</h2>
+                <p>Kullanıcının sigara harcama alışkanlıklarını analiz ederek geleceğe yönelik tasarruf projeksiyonu çizer. Aşağıda simülatörün kullandığı matematiksel hesaplama algoritması yer almaktadır.</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span><i class="fa-brands fa-js"></i> simulatorEngine.js</span>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Kopyala</button>
+                    </div>
+                    <pre><code>/**
+ * Finansal Tasarruf Hesaplama Fonksiyonu
+ * @param {number} dailyPacks - Günlük tüketilen paket sayısı
+ * @param {number} packPrice - Paket başına güncel fiyat (TL)
+ * @param {number} daysQuit - Sigaranın bırakıldığı gün sayısı
+ */
+function calculateSavings(dailyPacks, packPrice, daysQuit) {
+    const dailyCost = dailyPacks * packPrice;
+    const totalSaved = dailyCost * daysQuit;
+    const yearlyProjected = dailyCost * 365;
+    
+    return {
+        totalSaved: totalSaved.toFixed(2),
+        yearlyProjected: yearlyProjected.toFixed(2),
+        lifeHoursGained: (daysQuit * dailyPacks * 20 * 11 / 60).toFixed(1) // Sigara başı ~11 dk
+    };
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- 5. 4-7-8 NEFES EGZERSIZI -->
+            <section id="egzersiz">
+                <h2><i class="fa-solid fa-lungs"></i> 4-7-8 Nefes Egzersizi Modülü</h2>
+                <p>Medikal popülariteye sahip olan bu teknik, parasempatik sinir sistemini uyararak nikotin yoksunluğunun tetiklediği anksiyete ve stresi düşürür[cite: 1].</p>
+
+                <div class="breathing-box">
+                    <h3>Canlı Nefes Simülatörü</h3>
+                    <p style="font-size: 0.85rem;">Aşağıdaki butona basarak interaktif döngüyü test edebilirsiniz.</p>
+                    <div class="circle-container">
+                        <div class="breath-circle" id="breathCircle"></div>
+                        <span class="breath-text" id="breathText">Hazır</span>
+                    </div>
+                    <button class="btn" id="startBreathBtn"><i class="fa-solid fa-play"></i> Egzersizi Başlat</button>
+                </div>
+            </section>
+
+            <!-- 6. YAPAY ZEKA KOCU -->
+            <section id="ai-koc">
+                <h2><i class="fa-solid fa-robot"></i> Yapay Zeka Koçu (AI)</h2>
+                <p>NLP (Doğal Dil İşleme) tabanlı çalışan AI asistan, kullanıcının ruh halini analiz eder. Kullanıcı anlık kriz durumunu bildirdiğinde sistem özel bir motivasyon yanıtı üretir.</p>
+
+                <div class="info-box warning">
+                    <i class="fa-solid fa-triangle-exclamation" style="color: var(--accent);"></i>
+                    <div>
+                        <strong>Yapay Zeka Sorumluluk Reddi:</strong> AI Koç tıbbi bir teşhis koymaz veya tıbbi tedavi reçetesi sunmaz. Yalnızca motivasyonel destek sağlamak üzere kurgulanmıştır.
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. SAGLIK HARITASI -->
+            <section id="saglik-haritasi">
+                <h2><i class="fa-solid fa-heart-pulse"></i> Vücut İyileşme Haritası</h2>
+                <p>Sigara bırakıldıktan sonra organizmada meydana gelen fizyolojik değişimlerin zaman çizelgesi:</p>
+
+                <ul class="feature-list">
+                    <li><strong>20 Dakika Sonra:</strong> Kan basıncı ve nabız normale döner.</li>
+                    <li><strong>8 Saat Sonra:</strong> Kandaki oksijen seviyesi normal düzeye ulaşır.</li>
+                    <li><strong>48 Saat Sonra:</strong> Tat ve koku duyuları keskinleşmeye başlar, nikotin vücuttan temizlenir.</li>
+                    <li><strong>2-12 Hafta Sonra:</strong> Dolaşım düzelir, akciğer fonksiyonları artar.</li>
+                    <li><strong>1 Yıl Sonra:</strong> Kalp krizi geçirme riski yarı yarıya azalır.</li>
+                </ul>
+            </section>
+
+            <!-- 8. REST API REFERENCE -->
+            <section id="api-ref">
+                <h2><i class="fa-solid fa-network-wired"></i> REST API Entegrasyonu</h2>
+                <p>Platform, veri senkronizasyonu için aşağıdaki standart endpoint yapılarını destekler.</p>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Metot</th>
+                                <th>Endpoint</th>
+                                <th>Açıklama</th>
+                                <th>Auth Required</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <li><code style="color: var(--info);">GET</code></li>
+                                <li><code>/api/v1/user/stats</code></li>
+                                <li>Kullanıcının anlık bırakma istatistiklerini getirir.</li>
+                                <li>Evet (Bearer Token)</li>
+                            </tr>
+                            <tr>
+                                <li><code style="color: var(--success);">POST</code></li>
+                                <li><code>/api/v1/logs/craving</code></li>
+                                <li>Kriz anı kaydı ve tetikleyici faktör verisi gönderir.</li>
+                                <li>Evet</li>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 9. LOCAL STORAGE & CACHE -->
+            <section id="local-storage">
+                <h2><i class="fa-solid fa-database"></i> Yerel Veri Depolama Yapısı</h2>
+                <p>Kullanıcının oturum verileri tarayıcının <code>localStorage</code> alanında JSON formatında saklanır.</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span><i class="fa-brackets-curly"></i> JSON Schema Örneği</span>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fa-regular fa-copy"></i> Kopyala</button>
+                    </div>
+                    <pre><code>{
+  "userId": "usr_998231",
+  "startDate": "2026-01-15T08:00:00.000Z",
+  "dailyPackUsage": 1.5,
+  "packPriceTL": 75.00,
+  "currency": "TRY",
+  "settings": {
+    "notificationsEnabled": true,
+    "theme": "dark"
+  }
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- 10. YESILAY DESTEK -->
+            <section id="yesilay">
+                <h2><i class="fa-solid fa-hand-holding-medical"></i> Yeşilay 115 YEDAM Destek</h2>
+                <p>Sistem, Yeşilay Danışmanlık Merkezi (YEDAM) altyapısı ile entegre farkındalık modülleri içerir[cite: 3]. Bağımlılık hususunda profesyonel psikolojik ve sosyal destek almak için tamamen ücretsiz olan <strong>115</strong> numarasını arayabilirsiniz[cite: 3].</p>
+
+                <button class="btn" style="background-color: var(--success);" onclick="openModal('yedamModal')">
+                    <i class="fa-solid fa-phone"></i> YEDAM Bilgi Kartını Göster
+                </button>
+            </section>
+
+            <!-- 11. KVKK -->
+            <section id="kvkk">
+                <h2><i class="fa-solid fa-user-shield"></i> KVKK & Veri Güvenliği</h2>
+                <p>6698 sayılı Kişisel Verilerin Korunması Kanunu uyarınca, kullanıcıların tütün kullanım verileri ve özel nitelikli sağlık bilgileri sunucularımızda yalın halde tutulmaz. Bütün süreç istemci tarafında anonimleştirilerek işlenmektedir.</p>
+            </section>
+
+            <!-- 12. GİZLİLİK POLİTİKASI -->
+            <section id="gizlilik-politikasi">
+                <h2><i class="fa-solid fa-user-lock"></i> Gizlilik Politikası</h2>
+                <p>Son Güncelleme: 24 Ağustos 2026</p>
+                
+                <div class="legal-block">
+                    <h3>1. Toplanan Veriler ve Kullanım Amacı</h3>
+                    <p>Dumansız Gelecek uygulaması, kullanıcı deneyimini iyileştirmek ve kişisel sigara bırakma istatistiklerini hesaplamak amacıyla yalnızca cihazınız üzerinde yerel veri (LocalStorage) saklar. Sunucularımıza ad, soyad, T.C. Kimlik numarası gibi hassas kişisel veriler aktarılmaz.</p>
+                </div>
+
+                <div class="legal-block">
+                    <h3>2. Çerezler ve Yerel Depolama (LocalStorage)</h3>
+                    <p>Uygulama; bırakma tarihiniz, günlük paket tüketiminiz ve tercih ettiğiniz tema gibi verileri doğrudan tarayıcınızın <code>localStorage</code> alanında muhafaza eder. Dilediğiniz zaman tarayıcı geçmişini silerek tüm verilerinizi sıfırlayabilirsiniz.</p>
+                </div>
+
+                <div class="legal-block">
+                    <h3>3. Üçüncü Taraf Bağlantıları</h3>
+                    <p>Platform içerisinde yer alan Yeşilay YEDAM (115) ve benzeri dış bağlantılar kendi gizlilik politikalarına tabidir[cite: 3]. Bu sitelerin içeriklerinden platformumuz sorumlu tutulamaz.</p>
+                </div>
+            </section>
+
+            <!-- 13. KULLANIM ŞARTLARI -->
+            <section id="kullanim-sartlari">
+                <h2><i class="fa-solid fa-file-contract"></i> Kullanım Şartları</h2>
+                <p>Son Güncelleme: 24 Ağustos 2026</p>
+
+                <div class="legal-block">
+                    <h3>1. Tıbbi Tavsiye Reddi (Medical Disclaimer)</h3>
+                    <p><strong>Dumansız Gelecek bir tıbbi teşhis veya tedavi uygulaması değildir.</strong> Platform içerisindeki yapay zeka önerileri, nefes egzersizleri ve sayaçlar yalnızca bilgilendirme ve motivasyon amaçlıdır[cite: 1]. Tıbbi sorunlarınız veya bağımlılık tedavileriniz için yetkili sağlık kuruluşlarına ve hekimlere başvurmanız gerekmektedir.</p>
+                </div>
+
+                <div class="legal-block">
+                    <h3>2. Fikri Mülkiyet Hakları</h3>
+                    <p>Uygulama tasarımı, kaynak kodları, grafikler ve algoritmalar TEKNOFEST projesi kapsamında geliştirilmiş olup telif hakları ile korunmaktadır[cite: 1, 3]. Kaynak kodları yalnızca kamuya açık GitHub reposundaki lisans şartları çerçevesinde kullanılabilir.</p>
+                </div>
+
+                <div class="legal-block">
+                    <h3>3. Hizmet Değişiklikleri ve Sorumluluk Sınırı</h3>
+                    <p>Dumansız Gelecek ekibi, uygulamayı önceden haber vermeksizin güncelleme, değiştirme veya durdurma hakkını saklı tutar. Uygulamanın kullanımından doğabilecek kesintilerden veya veri kayıplarından platform yöneticileri sorumlu tutulamaz.</p>
+                </div>
+            </section>
+
+            <!-- 14. SSS -->
+            <section id="sss">
+                <h2><i class="fa-solid fa-circle-question"></i> Sıkça Sorulan Sorular</h2>
+                
+                <div class="card" style="margin-bottom: 1rem;">
+                    <h4>Proje tamamen ücretsiz mi?</h4>
+                    <p>Evet, Dumansız Gelecek TEKNOFEST bünyesinde geliştirilmiş, kamu yararı gözeten tamamen ücretsiz bir projedir[cite: 1, 3].</p>
+                </div>
+                <div class="card">
+                    <h4>Verilerim başka kurumlarla paylaşılıyor mu?</h4>
+                    <p>Hayır, verileriniz hiçbir şekilde 3. taraf reklam veya veri şirketleriyle paylaşılmaz.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="yedamModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-leaf" style="color: var(--success);"></i> Yeşilay YEDAM 115</h3>
+                <button class="modal-close" onclick="closeModal('yedamModal')">&times;</button>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+                Yeşilay Danışmanlık Merkezi (YEDAM), tütün bağımlılığı da dahil olmak üzere uzman psikologlar ve sosyal hizmet uzmanları ile ücretsiz destek vermektedir[cite: 3].
+            </p>
+            <div style="margin-top: 1.5rem; text-align: right;">
+                <a href="tel:115" class="btn" style="background-color: var(--success); text-decoration: none;">
+                    <i class="fa-solid fa-phone-flip"></i> 115'i Ara
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div>
+            © 2027 Dumansız Gelecek | TEKNOFEST İnsanlık Yararına Teknoloji Projesi[cite: 1, 3]
+        </div>
+        <div class="footer-links">
+            <a href="https://github.com/tolgauysal" target="_blank"><i class="fa-brands fa-github"></i> Tolga Uysal</a>
+            <a href="https://github.com/volkan560" target="_blank"><i class="fa-brands fa-github"></i> Volkan Mutlu</a>
+            <a href="#gizlilik-politikasi">Gizlilik Politikası</a>
+            <a href="#kullanim-sartlari">Kullanım Şartları</a>
+        </div>
+    </footer>
+
+    <!-- JS Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // DOM Elements
+            const menuLinks = document.querySelectorAll('.menu-item');
+            const sections = document.querySelectorAll('main section');
+            const searchInput = document.getElementById('searchInput');
+            const currentBreadcrumb = document.getElementById('currentBreadcrumb');
+            const mobileToggle = document.getElementById('mobileToggle');
+            const sidebar = document.getElementById('sidebar');
+
+            // 1. Mobile Sidebar Toggle
+            mobileToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+            });
+
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    if (!sidebar.contains(e.target) && !mobileToggle.contains(e.target)) {
+                        sidebar.classList.remove('open');
+                    }
+                }
+            });
+
+            // 2. Active Menu & Breadcrumb Sync
+            menuLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    menuLinks.forEach(item => item.classList.remove('active'));
+                    link.classList.add('active');
+                    
+                    const text = link.querySelector('span').textContent;
+                    currentBreadcrumb.textContent = text;
+
+                    if (window.innerWidth <= 768) {
+                        sidebar.classList.remove('open');
+                    }
+                });
+            });
+
+            // 3. Advanced Search Filtering
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+
+                sections.forEach(section => {
+                    const textContent = section.textContent.toLowerCase();
+                    const sectionId = section.getAttribute('id');
+                    const matchingLink = document.querySelector(`.menu-item[href="#${sectionId}"]`);
+
+                    if (textContent.includes(query)) {
+                        section.classList.remove('hidden');
+                        if (matchingLink) {
+                            matchingLink.parentElement.classList.remove('hidden');
+                        }
+                    } else {
+                        section.classList.add('hidden');
+                        if (matchingLink) {
+                            matchingLink.parentElement.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+
+            // Keyboard shortcut for search (CTRL + K or CMD + K)
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+            });
+
+            // 4. ScrollSpy Implementation
+            window.addEventListener('scroll', () => {
+                let currentSectionId = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 120;
+                    if (window.scrollY >= sectionTop) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+
+                if (currentSectionId) {
+                    menuLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${currentSectionId}`) {
+                            link.classList.add('active');
+                            const text = link.querySelector('span').textContent;
+                            currentBreadcrumb.textContent = text;
+                        }
+                    });
+                }
+            });
+
+            // 5. Breathing Exercise Simulator Logic
+            const startBreathBtn = document.getElementById('startBreathBtn');
+            const breathCircle = document.getElementById('breathCircle');
+            const breathText = document.getElementById('breathText');
+            let isBreathing = false;
+            let breathInterval;
+
+            startBreathBtn.addEventListener('click', () => {
+                if (isBreathing) {
+                    clearInterval(breathInterval);
+                    breathCircle.className = 'breath-circle';
+                    breathText.textContent = 'Hazır';
+                    startBreathBtn.innerHTML = '<i class="fa-solid fa-play"></i> Egzersizi Başlat';
+                    isBreathing = false;
+                } else {
+                    isBreathing = true;
+                    startBreathBtn.innerHTML = '<i class="fa-solid fa-square"></i> Durdur';
+                    runBreathingCycle();
+                    breathInterval = setInterval(runBreathingCycle, 19000); // 4 + 7 + 8 = 19 saniye
+                }
+            });
+
+            function runBreathingCycle() {
+                // Nefes Al (4s)
+                breathCircle.className = 'breath-circle inhale';
+                breathText.textContent = 'Nefes Al (4s)';
+
+                setTimeout(() => {
+                    if (!isBreathing) return;
+                    // Tut (7s)
+                    breathCircle.className = 'breath-circle hold';
+                    breathText.textContent = 'Tut (7s)';
+                }, 4000);
+
+                setTimeout(() => {
+                    if (!isBreathing) return;
+                    // Ver (8s)
+                    breathCircle.className = 'breath-circle exhale';
+                    breathText.textContent = 'Ver (8s)';
+                }, 11000);
+            }
+        });
+
+        // 6. Global Helper Functions (Copy & Modal)
+        function copyCode(button) {
+            const container = button.closest('.code-container');
+            const codeText = container.querySelector('code').innerText;
+
+            navigator.clipboard.writeText(codeText).then(() => {
+                const originalHtml = button.innerHTML;
+                button.innerHTML = '<i class="fa-solid fa-check" style="color: var(--success);"></i> Kopyalandı!';
+                setTimeout(() => {
+                    button.innerHTML = originalHtml;
+                }, 2000);
+            });
+        }
+
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+    </script>
+</body>
+</html>

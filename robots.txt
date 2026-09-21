@@ -1,0 +1,10 @@
+# Arama motoru botlarının erişim kuralları
+User-agent: *
+Allow: /
+
+# Tarama gereği olmayan teknik/statik dizinleri engelleyelim
+Disallow: /assets/
+Disallow: /*.apk$
+
+# Google & Bing için sitemap konumu
+Sitemap: https://tolgauysal.github.io/dumansiz-gelecek/sitemap.xml

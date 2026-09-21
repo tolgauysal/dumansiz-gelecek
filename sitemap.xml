@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- ANA SAYFA -->
+  <url>
+    <loc>https://tolgauysal.github.io/dumansiz-gelecek/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    
+    <!-- Dil Alternatifleri -->
+    <xhtml:link rel="alternate" hreflang="tr" href="https://tolgauysal.github.io/dumansiz-gelecek/?lang=tr"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tolgauysal.github.io/dumansiz-gelecek/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://tolgauysal.github.io/dumansiz-gelecek/?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tolgauysal.github.io/dumansiz-gelecek/"/>
+
+    <!-- Öne Çıkan Logo & Önizleme Görselleri -->
+    <image:image>
+      <image:loc>https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/005/100/177/datas/original.png</image:loc>
+      <image:title>Dumansız Gelecek Logo</image:title>
+    </image:image>
+  </url>
+
+  <!-- DOKÜMANTASYON SAYFASI -->
+  <url>
+    <loc>https://tolgauysal.github.io/dumansiz-gelecek/docs/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- WEB KVKK SAYFASI -->
+  <url>
+    <loc>https://tolgauysal.github.io/dumansiz-gelecek/kvkk.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- MOBİL / ANDROID KVKK SAYFASI -->
+  <url>
+    <loc>https://tolgauysal.github.io/dumansiz-gelecek/android/kvkk.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- ANDROID APK İNDİRME BAĞLANTISI -->
+  <url>
+    <loc>https://tolgauysal.github.io/dumansiz-gelecek/Dumansız-Gelecek-app.apk</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

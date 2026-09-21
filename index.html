@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dumansız Gelecek, sigara bırakma, nikotin bağımlılığı farkındalığı ve sağlıklı yaşam için destek sunan girişim ve takip platformudur.">
+    <meta name="keywords" content="dumansız gelecek, sigara bırakma, nikotin bağımlılığı, sağlıklı yaşam, Yeşilay, ilk yardım">
+    <meta name="robots" content="index, follow">
+    <meta name="google-client-id" content="">
+    <meta property="og:title" content="Dumansız Gelecek">
+    <meta property="og:description" content="Sigara bırakma ve sağlıklı yaşam farkındalığı için Dumansız Gelecek platformu.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://tolgauysal.github.io/dumansiz-gelecek/image.png">
+    <link rel="canonical" href="https://tolgauysal.github.io/dumansiz-gelecek/">
+    <title>Dumansız Gelecek | Sağlıklı Yaşam ve Takip Platformu</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/005/100/176/datas/original.png" type="image/png">
+    <link rel="stylesheet" href="https://tolgauysal.github.io/dumansiz-gelecek/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@formspree/formbutton@1.0.0/dist/formbutton.min.css">
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
+    <script src="assets/js/main.js?v=20260916.2" defer></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Dumansız Gelecek",
+      "url": "https://tolgauysal.github.io/dumansiz-gelecek/",
+      "description": "Sigara bırakma, nikotin bağımlılığı farkındalığı ve sağlıklı yaşam için destek platformu.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://tolgauysal.github.io/dumansiz-gelecek/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <style>
+        .notif-wrapper { position: relative; display: inline-block; }
+        .notif-toggle-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #ffffff; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; transition: all 0.2s ease; }
+        .notif-toggle-btn:hover { background: rgba(0, 210, 106, 0.2); border-color: #00d26a; color: #00d26a; }
+        .notif-badge-dot { position: absolute; top: 2px; right: 2px; width: 10px; height: 10px; background-color: #ff5252; border-radius: 50%; border: 2px solid #121824; }
+        .notif-dropdown { position: absolute; right: 0; top: calc(100% + 12px); width: 320px; background: #1e2530; border: 1px solid #2d3748; border-radius: 12px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5); z-index: 1000; display: none; overflow: hidden; animation: fadeInNotif 0.2s ease; }
+        @keyframes fadeInNotif { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+        .notif-dropdown.show { display: block; }
+        .notif-header { padding: 12px 16px; background: #121824; border-bottom: 1px solid #2d3748; display: flex; align-items: center; justify-content: space-between; }
+        .notif-header h4 { margin: 0; font-size: 0.95rem; color: #fff; display: flex; align-items: center; gap: 8px; }
+        .notif-body { max-height: 300px; overflow-y: auto; }
+        .notif-card { padding: 12px 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); transition: background 0.2s ease; }
+        .notif-card:last-child { border-bottom: none; }
+        .notif-card:hover { background: rgba(255, 255, 255, 0.03); }
+        .notif-card-tag { font-size: 0.7rem; font-weight: 700; color: #00d26a; text-transform: uppercase; margin-bottom: 4px; display: block; }
+        .notif-card-text { font-size: 0.85rem; color: #e2e8f0; margin: 0; line-height: 1.4; }
+
+        .lang-switcher { display: flex; align-items: center; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 2px 6px; gap: 4px; }
+        .lang-btn { background: none; border: none; color: #888; font-size: 0.75rem; font-weight: 700; padding: 4px 6px; cursor: pointer; border-radius: 12px; transition: all 0.2s ease; }
+        .lang-btn:hover { color: #fff; }
+        .lang-btn.active { background: #00d26a; color: #121824; }
+
+        .github-auth-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px 16px; background-color: #24292e; color: #ffffff !important; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s ease; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border: 1px solid #334155; cursor: pointer; box-sizing: border-box; }
+        .github-auth-btn:hover:not(.disabled) { background-color: #333940; border-color: #00d26a; color: #ffffff !important; transform: translateY(-1px); }
+        .github-auth-btn.disabled { background-color: #1a202c; color: #64748b !important; border-color: #2d3748; cursor: not-allowed; opacity: 0.5; pointer-events: none; }
+
+        .auth-divider { display: flex; align-items: center; text-align: center; margin: 15px 0; color: #888; font-size: 0.85rem; }
+        .auth-divider::before, .auth-divider::after { content: ''; flex: 1; border-bottom: 1px solid #2d3748; }
+        .auth-divider span { padding: 0 10px; font-weight: 500; }
+
+        .user-profile-menu { display: none; position: relative; }
+        .profile-trigger { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 6px 12px 6px 6px; border-radius: 999px; transition: background 0.2s ease; }
+        .profile-trigger:hover { background: rgba(255, 255, 255, 0.06); }
+        .profile-trigger-avatar { width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--primary-light, #d20000); object-fit: cover; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .profile-trigger:hover .profile-trigger-avatar { transform: scale(1.05); box-shadow: 0 0 0 3px rgba(0, 210, 106, 0.25); }
+        .profile-trigger-name { font-weight: 600; font-size: 0.95rem; color: #fff; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .profile-trigger-caret { font-size: 0.75rem; color: #9aa4b5; transition: transform 0.2s ease; }
+        .profile-trigger[aria-expanded="true"] .profile-trigger-caret { transform: rotate(180deg); }
+
+        .profile-dropdown { position: absolute; right: 0; top: calc(100% + 10px); background: #1e2530; border: 1px solid #2d3748; border-radius: 10px; width: 210px; box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4); z-index: 1000; overflow: hidden; opacity: 0; transform: translateY(-8px) scale(0.97); pointer-events: none; transition: opacity 0.18s ease, transform 0.18s ease; }
+        .profile-dropdown.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+        .dropdown-item { display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #fff; text-decoration: none; font-size: 0.9rem; border-bottom: 1px solid #2d3748; transition: background 0.15s ease, padding-left 0.15s ease; background: transparent; width: 100%; border-left: none; border-right: none; border-top: none; cursor: pointer; text-align: left; }
+        .dropdown-item:last-child { border-bottom: none; }
+        .dropdown-item:hover { background: rgba(255, 255, 255, 0.06); padding-left: 20px; }
+        .dropdown-item i { width: 16px; text-align: center; color: var(--primary-light, #00d26a); }
+        .dropdown-item.logout { color: #ff5252; }
+        .dropdown-item.logout i { color: #ff5252; }
+        .dropdown-item.logout:hover { background: rgba(255, 82, 82, 0.08); }
+
+        .profile-avatar-editor { text-align: center; margin-bottom: 18px; }
+        .profile-avatar-editor img { width: 84px; height: 84px; border-radius: 50%; border: 3px solid var(--primary-light, #00d26a); object-fit: cover; margin-bottom: 10px; box-shadow: 0 0 0 4px rgba(0, 210, 106, 0.12); transition: box-shadow 0.2s ease; }
+        .profile-avatar-editor img:hover { box-shadow: 0 0 0 6px rgba(0, 210, 106, 0.2); }
+        .profile-avatar-hint { font-size: 0.8rem; color: #888; margin: 0; }
+
+        .gemini-card-wrapper { position: relative; background: #121927; border: 1px solid #1f293d; border-radius: 12px; padding: 24px; margin-top: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .auth-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(18, 25, 39, 0.85); backdrop-filter: blur(6px); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 10; text-align: center; padding: 20px; }
+        .auth-overlay .lock-icon { font-size: 32px; margin-bottom: 8px; }
+        .auth-overlay h4 { color: #fff; font-size: 18px; margin-bottom: 6px; }
+        .auth-overlay p { color: #94a3b8; font-size: 14px; margin-bottom: 16px; }
+        .auth-buttons { display: flex; gap: 12px; }
+        .btn-auth { padding: 8px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s ease; }
+        .btn-auth.login { background: #e52e2e; color: #fff; }
+        .btn-auth.register { background: transparent; border: 1px solid #e52e2e; color: #fff; }
+        .btn-auth:hover { opacity: 0.9; transform: translateY(-1px); }
+        .blur-content { filter: blur(4px); pointer-events: none; }
+        .gemini-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+        .gemini-header h3 { color: #fff; font-size: 18px; margin: 0; }
+        .sparkle-icon { font-size: 20px; }
+        #geminiMotivationText { color: #cbd5e1; font-size: 15px; line-height: 1.6; margin-bottom: 16px; }
+        .btn-refresh { background: #1e293b; border: 1px solid #334155; color: #94a3b8; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; transition: all 0.2s ease; }
+        .btn-refresh:hover { color: #fff; border-color: #475569; }
+        
+        .btn-gcal { background: #4285f4; color: #fff; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; width: 100%; transition: background 0.2s; }
+        .btn-gcal:hover { background: #3367d6; }
+        .ai-tools { margin: 28px 0; padding: 24px; background: #121927; border: 1px solid #1f293d; border-radius: 12px; }
+        .ai-tools form { display: flex; gap: 10px; margin-top: 14px; }
+        .ai-tools input { flex: 1; min-width: 0; }
+        .ai-answer { min-height: 24px; color: #cbd5e1; line-height: 1.6; }
+        .legal-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin: 18px 0; font-size: .85rem; }
+        .legal-links a { color: var(--text-muted); }
+        body.cookie-gate-open { overflow: hidden; }
+        .cookie-consent-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(8, 12, 18, 0.86);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5000;
+            padding: 24px;
+        }
+        .cookie-consent-card {
+            width: min(520px, 100%);
+            background: #121824;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 18px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+            padding: 24px 26px;
+            color: #eef2ff;
+        }
+        .cookie-consent-card h2 {
+            margin: 0 0 12px;
+            font-size: clamp(1.5rem, 2vw, 2rem);
+        }
+        .cookie-consent-card p {
+            margin: 0 0 22px;
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+        .cookie-consent-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <div id="cookieConsentGate" class="cookie-consent-overlay" role="dialog" aria-modal="true" aria-labelledby="cookieConsentTitle">
+        <div class="cookie-consent-card">
+            <h2 id="cookieConsentTitle">Çerez izni</h2>
+            <p>Bu uygulama, güvenlik, süre takibi ve kullanıcı deneyimi için çerez kullanır. Ana sayfaya erişmek için çerez kullanımını kabul etmeniz gerekir.</p>
+            <div class="cookie-consent-actions">
+                <button type="button" class="btn btn-primary" onclick="acceptCookieConsent()">Çerezleri Kabul Et</button>
+                <button type="button" class="btn btn-outline" onclick="rejectCookieConsent()">İzin Vermiyorum</button>
+            </div>
+        </div>
+    </div>
+
+    <aside class="tf-banner" id="teknofestBanner" role="complementary" aria-label="Duyuru Panosu">
+        <p data-i18n="tf_banner">🇹🇷 TEKNOFEST 2027 | İNSANLIK YARARINA TEKNOLOJİ YARIŞMASI</p>
+        <button onclick="closeBanner()" style="background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 5px;" aria-label="Banner'ı Kapat">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+    </aside>
+
+    <header>
+        <nav class="navbar" aria-label="Ana Gezinme">
+            <div class="nav-container">
+                <a href="#Anasayfa">
+                    <img src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/005/100/177/datas/original.png" alt="Dumansız Gelecek Logo" class="logo">
+                </a>
+                <div class="nav-menu">
+                    <a href="#proje-karti-tolga" class="hide-mobile" data-i18n="nav_credits">Künye</a>
+                    <a href="#dashboard" class="hide-mobile" data-i18n="nav_dashboard">Panel</a>
+                    <a href="#achievements" class="hide-mobile" data-i18n="nav_achievements">Başarılar</a>
+                    <a href="#timeline" class="hide-mobile" data-i18n="nav_health">Sağlık</a>
+                    <a href="#breathe" class="hide-mobile" data-i18n="nav_firstaid">İlk Yardım</a>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="lang-switcher">
+                        <button type="button" class="lang-btn active" id="lang-tr" onclick="changeLanguage('tr')">TR</button>
+                        <button type="button" class="lang-btn" id="lang-en" onclick="changeLanguage('en')">EN</button>
+                        <button type="button" class="lang-btn" id="lang-fr" onclick="changeLanguage('fr')">FR</button>
+                    </div>
+
+                    <div class="notif-wrapper">
+                        <button type="button" class="notif-toggle-btn" onclick="toggleNotifDropdown()" aria-label="Duyurular">
+                            <i class="fa-solid fa-bell" aria-hidden="true"></i>
+                            <span class="notif-badge-dot" id="notifDot"></span>
+                        </button>
+                        <div class="notif-dropdown" id="notifDropdown">
+                            <div class="notif-header">
+                                <h4><i class="fa-solid fa-bullhorn" style="color: #00d26a;"></i> <span data-i18n="notif_title">Duyurular & Bilgi</span></h4>
+                            </div>
+                            <div class="notif-body">
+                                <div class="notif-card">
+                                    <span class="notif-card-tag" data-i18n="notif_tag1">🚀 Sistem Güncellemesi v2.4</span>
+                                    <p class="notif-card-text" data-i18n="notif_desc1">Canlı takip algoritması ve 4-7-8 nefes terapisi modülü başarıyla yenilendi!</p>
+                                </div>
+                                <div class="notif-card">
+                                    <span class="notif-card-tag" data-i18n="notif_tag2">ℹ️ Platform Hakkında</span>
+                                    <p class="notif-card-text" data-i18n="notif_desc2">Dumansız Gelecek, sigara bağımlılığıyla mücadele eden kişilere özel geliştirilmiş ücretsiz bir dijital takip asistanıdır.</p>
+                                </div>
+                                <div class="notif-card">
+                                    <span class="notif-card-tag" data-i18n="notif_tag3">📲 Mobil</span>
+                                    <p class="notif-card-text" data-i18n="notif_desc3">Android sürümlerimizi sayfanın en altındaki bağlantılardan doğrudan indirebilirsiniz.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-auth" id="authButtons">
+                        <button type="button" class="btn btn-outline" onclick="openModal('loginModal')">
+                            <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> <span data-i18n="btn_login">Giriş Yap</span>
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="openModal('registerModal')">
+                            <i class="fa-solid fa-user-plus" aria-hidden="true"></i> <span data-i18n="btn_register">Kayıt Ol</span>
+                        </button>
+                    </div>
+
+                    <div class="user-profile-menu" id="userProfileMenu">
+                        <div class="profile-trigger" id="profileTrigger" onclick="toggleProfileDropdown()" aria-haspopup="true" aria-expanded="false" role="button" tabindex="0">
+                            <img id="navProfileImg" class="profile-trigger-avatar" src="https://github.com/identicons/guest.png" alt="Profil Fotoğrafı">
+                            <span id="navUserName" class="profile-trigger-name">Kullanıcı</span>
+                            <i class="fa-solid fa-chevron-down profile-trigger-caret" aria-hidden="true"></i>
+                        </div>
+
+                        <div class="profile-dropdown" id="profileDropdown">
+                            <button type="button" class="dropdown-item" onclick="openProfileSettings()">
+                                <i class="fa-solid fa-user-gear" aria-hidden="true"></i> <span data-i18n="profile_settings">Profil Ayarları</span>
+                            </button>
+                            <button type="button" class="dropdown-item logout" onclick="handleLogout()">
+                                <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> <span data-i18n="profile_logout">Çıkış Yap</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="modal-overlay" id="profileModal" style="display: none;" role="dialog" aria-labelledby="profileModalTitle" aria-modal="true">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title" id="profileModalTitle"><i class="fa-solid fa-user-gear" aria-hidden="true"></i> <span data-i18n="profile_settings">Profil Ayarları</span></h3>
+                <button type="button" class="close-modal" onclick="closeModal('profileModal')" aria-label="Kapat"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            </div>
+            <form onsubmit="saveProfileSettings(event)">
+                <div class="profile-avatar-editor">
+                    <img id="modalProfilePreview" src="https://github.com/identicons/guest.png" alt="Profil Önizleme">
+                    <p class="profile-avatar-hint" data-i18n="profile_hint">Profil resminiz GitHub hesabınızdan otomatik çekilir.</p>
+                </div>
+                <div class="form-group">
+                    <label for="editProfileName" data-i18n="lbl_fullname">Ad Soyad</label>
+                    <input type="text" id="editProfileName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="editGithubUsername" data-i18n="lbl_github_user">GitHub Kullanıcı Adı (Fotoğraf İçin)</label>
+                    <input type="text" id="editGithubUsername" class="form-control" placeholder="örnek: tolgauysal" oninput="updateGithubPreview(this.value)">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;" data-i18n="btn_save_update">
+                    Kaydet ve Güncelle
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="loginModal" role="dialog" aria-labelledby="loginModalTitle" aria-modal="true" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title" id="loginModalTitle">
+                    <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> 
+                    <span data-i18n="btn_login">Giriş Yap</span>
+                </h3>
+                <button type="button" class="close-modal" onclick="closeModal('loginModal')" aria-label="Kapat">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+            
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="loginEmail" data-i18n="lbl_email">E-Posta Adresi</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="ornek@mail.com" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="loginPass" data-i18n="lbl_pass">Şifre</label>
+                    <input type="password" id="loginPass" class="form-control" placeholder="******" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;" data-i18n="btn_login_submit">
+                    Oturum Aç
+                </button>
+            </form>
+
+            <div class="auth-divider">
+                <span data-i18n="or_divider">VEYA</span>
+            </div>
+
+            <!-- Google Giriş Butonu Alanı -->
+            <div id="googleLoginButtonLogin" style="display: flex; justify-content: center; margin-bottom: 10px;"></div>
+
+            <!-- GitHub Giriş Butonu -->
+            <a href="https://github.com/login/oauth/authorize?client_id=Ov23li11VUSvZxJwg3a0&scope=user:email" class="github-auth-btn">
+                <i class="fa-brands fa-github" style="font-size: 1.2rem;" aria-hidden="true"></i> 
+                <span data-i18n="btn_github_login">GitHub ile Giriş Yap</span>
+            </a>
+        </div>
+    </div>
+   <div class="modal-overlay" id="registerModal" role="dialog" aria-labelledby="regModalTitle" aria-modal="true" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title" id="regModalTitle">
+                    <i class="fa-solid fa-user-plus" aria-hidden="true"></i> 
+                    <span data-i18n="btn_register">Kayıt Ol</span>
+                </h3>
+                <button type="button" class="close-modal" onclick="closeModal('registerModal')" aria-label="Kapat">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+            
+            <form onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label for="regName" data-i18n="lbl_fullname">Adınız Soyadınız</label>
+                    <input type="text" id="regName" class="form-control" placeholder="Ad Soyad" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <label for="regEmail" data-i18n="lbl_email">E-Posta Adresi</label>
+                    <input type="email" id="regEmail" class="form-control" placeholder="ornek@mail.com" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="editPageBirthDate" data-i18n="lbl_birthdate">Doğum Tarihi</label>
+                    <input type="date" id="editPageBirthDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPass" data-i18n="lbl_pass">Şifre</label>
+                    <input type="password" id="regPass" class="form-control" placeholder="******" required autocomplete="new-password">
+                </div>
+                <div class="form-group">
+                    <label for="regPassConfirm" data-i18n="lbl_pass_confirm">Şifreyi Onayla</label>
+                    <input type="password" id="regPassConfirm" class="form-control" placeholder="******" required autocomplete="new-password">
+                </div>
+
+                <!-- KVKK Onayı -->
+                <div class="form-group" style="display: flex; align-items: flex-start; gap: 10px; margin-top: 15px;">
+                    <input type="checkbox" id="regKvkk" required style="width: 18px; height: 18px; margin-top: 2px; cursor: pointer;">
+                    <label for="regKvkk" style="font-size: 0.82rem; color: #ccc; cursor: pointer; line-height: 1.4;" data-i18n="lbl_kvkk">
+                        6698 sayılı KVKK kapsamında kişisel verilerimin işlenmesine ilişkin Aydınlatma Metni'ni okudum ve kabul ediyorum.
+                    </label>
+                </div>
+
+                <!-- Yaş Onayı -->
+                <div class="form-group" style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
+                    <input type="checkbox" id="regAgeConfirm" required style="width: 18px; height: 18px; cursor: pointer;">
+                    <label for="regAgeConfirm" style="font-size: 0.85rem; color: #ccc; cursor: pointer;" data-i18n="lbl_age_confirm">
+                        18 yaşından büyük olduğumu onaylıyorum.
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 15px;" data-i18n="btn_create_account">
+                    Hesap Oluştur
+                </button>
+            </form>
+
+            <div class="auth-divider">
+                <span data-i18n="or_divider">VEYA</span>
+            </div>
+
+            <!-- Google Kayıt Butonu Alanı -->
+            <div id="googleLoginButtonRegister" style="display: flex; justify-content: center; margin-bottom: 10px;"></div>
+
+            <!-- GitHub Kayıt Butonu -->
+            <a href="https://github.com/login/oauth/authorize?client_id=Ov23li11VUSvZxJwg3a0&scope=user:email" id="githubRegisterBtn" class="github-auth-btn disabled" aria-disabled="true" style="margin-top: 10px;">
+                <i class="fa-brands fa-github" style="font-size: 1.2rem;" aria-hidden="true"></i> 
+                <span data-i18n="btn_github_register">GitHub ile Kayıt Ol</span>
+            </a>
+
+            <span id="githubBtnHint" style="display: block; font-size: 0.75rem; color: #fbbf24; text-align: center; margin-top: 6px;" data-i18n="hint_github_terms">
+                * GitHub ile kayıt olmak için onay kutularını işaretlemelisiniz.
+            </span>
+        </div>
+    </div>
+    <main class="container">
+        <section id="proje-karti-tolga" class="project-identity" aria-labelledby="heading-tolga">
+            <div class="developer-avatar">
+                <img src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/005/111/813/datas/original.jpg" alt="Tolga Uysal">
+            </div>
+            <div class="identity-content">
+                <h1 id="heading-tolga"><span data-i18n="welcome_tolga">Merhaba Ben</span> <span>Tolga Uysal</span>!</h1>
+                <p data-i18n="desc_tolga">Türkiye Cumhuriyeti öğrencisi ve TEKNOFEST'e bireysel katılımcı olarak bu projeyi geliştiriyorum. Volkan Mutlu'nun danışmanlığında, sigarayı bırakma sürecini destekleyen erişilebilir bir sağlık teknolojisi geliştirmeyi amaçlıyorum.</p>
+                <div class="tf-tags">
+                    <span class="tf-tag highlight"><i class="fa-solid fa-code" aria-hidden="true"></i> <span data-i18n="tag_dev_tolga">Geliştirici: Tolga Uysal</span></span>
+                    <span class="tf-tag"><i class="fa-solid fa-user-check" aria-hidden="true"></i> TEKNOFEST bireysel katılımcısı</span>
+                    <span class="tf-tag"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> <span data-i18n="tag_category">Kategori: Sağlık ve İlk Yardım</span></span>
+                    <span class="tf-tag"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i> <span data-i18n="tag_tech">İnsanlık Yararına Teknoloji</span></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="proje-karti-volkan" class="project-identity" aria-labelledby="heading-volkan">
+            <div class="developer-avatar">
+                <img src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/005/111/814/datas/original.jpeg" alt="Volkan Mutlu">
+            </div>
+            <div class="identity-content">
+                <h2 id="heading-volkan"><span data-i18n="welcome_volkan">Merhaba Ben</span> <span>Volkan Mutlu</span>!</h2>
+                <p data-i18n="desc_volkan">Projenin danışmanı ve süreç ortağıyım. Türkiye Cumhuriyeti'nin tam bağımsız teknoloji hamlesine katkı sunmak ve genç nesilleri zararlı bağımlılıklardan koruyarak sigara kaynaklı sağlık kayıplarının önüne geçmek amacıyla bu yola çıktım. Ekibimize süreç, vizyon yönetimi ve tasarım konularında destek sağlıyorum.</p>
+                <div class="tf-tags">
+                    <span class="tf-tag highlight"><i class="fa-solid fa-user-tie" aria-hidden="true"></i> <span data-i18n="tag_dev_volkan">Danışman: Volkan Mutlu</span></span>
+                    <span class="tf-tag"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> <span data-i18n="tag_category">Kategori: Sağlık ve İlk Yardım</span></span>
+                    <span class="tf-tag"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i> <span data-i18n="tag_tech">İnsanlık Yararına Teknoloji</span></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="dashboard" class="dashboard-layout" aria-label="Kontrol Paneli">
+            <div class="card">
+                <h3 class="card-title" style="margin-bottom: 15px;"><i class="fa-solid fa-sliders" style="color: var(--primary-light)" aria-hidden="true"></i> <span data-i18n="sim_title">Kullanıcı Simülasyonu</span></h3>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;" data-i18n="sim_desc">Sayın jüri, değerleri değiştirerek sistemin anlık tepkilerini test edebilirsiniz.</p>
+                
+                <div class="form-group">
+                    <label for="userName" data-i18n="lbl_username">Kullanıcı Adı</label>
+                    <input type="text" id="userName" class="form-control" value="Örnek Kullanıcı" onchange="saveConfig()">
+                </div>
+                <div class="form-group">
+                    <label for="quitDate" data-i18n="lbl_quitdate">Bırakma Tarihi</label>
+                    <input type="datetime-local" id="quitDate" class="form-control" onchange="saveConfig()">
+                </div>
+                <div class="form-group">
+                    <label for="dailyPacks" data-i18n="lbl_dailypacks">Günlük Tüketim (Paket)</label>
+                    <input type="number" id="dailyPacks" class="form-control" value="1" step="0.1" min="0" onchange="saveConfig()">
+                </div>
+                <div class="form-group">
+                    <label for="packCost" data-i18n="lbl_packcost">1 Paket Fiyatı (TL)</label>
+                    <input type="number" id="packCost" class="form-control" value="80" min="0" onchange="saveConfig()">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="saveConfig(true)" style="width: 100%;">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i> <span data-i18n="btn_update_sim">Simülasyonu Güncelle</span>
+                </button>
+            </div>
+
+            <div style="padding: 0; background: transparent; border: none;">
+                <h3 id="welcomeMsg" style="margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 800;" data-i18n="algo_working">Algoritma Çalışıyor...</h3>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <i class="fa-solid fa-stopwatch stat-icon" aria-hidden="true"></i>
+                        <div class="stat-label" data-i18n="stat_smokefree_time">Dumansız Süre</div>
+                        <div class="stat-value" id="valTime">0g 0s 0d 0sn</div>
+                        <div class="stat-sub" data-i18n="stat_smokefree_sub">Özgürlüğe atılan adımlar</div>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fa-solid fa-wallet stat-icon" aria-hidden="true"></i>
+                        <div class="stat-label" data-i18n="stat_money_saved">Kurtarılan Milli Servet</div>
+                        <div class="stat-value" id="valMoney">0.00 TL</div>
+                        <div class="stat-sub" data-i18n="stat_money_sub">Ülke ekonomisine katkı</div>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fa-solid fa-ban stat-icon" aria-hidden="true"></i>
+                        <div class="stat-label" data-i18n="stat_cigs_avoided">İçilmeyen Sigara</div>
+                        <div class="stat-value" id="valCount">0 Adet</div>
+                        <div class="stat-sub" data-i18n="stat_cigs_sub">Zehirden kaçınıldı</div>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fa-solid fa-heart-pulse stat-icon" aria-hidden="true"></i>
+                        <div class="stat-label" data-i18n="stat_life_gained">Kazanılan Ömür</div>
+                        <div class="stat-value" id="valLife">0 Saat</div>
+                        <div class="stat-sub" data-i18n="stat_life_sub">Hayata eklenen zaman</div>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fa-solid fa-flask stat-icon" aria-hidden="true"></i>
+                        <div class="stat-label" data-i18n="stat_tar_avoided">Alınmayan Katran</div>
+                        <div class="stat-value" id="valTar">0 mg</div>
+                        <div class="stat-sub" data-i18n="stat_tar_sub">Ciğerlerimiz temiz kaldı</div>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fa-solid fa-wind stat-icon" aria-hidden="true"></i>
+                        <div class="stat-label" data-i18n="stat_puffs_avoided">Çekilmeyen Nefes</div>
+                        <div class="stat-value" id="valPuff">0</div>
+                        <div class="stat-sub" data-i18n="stat_puffs_sub">Zehirli nefes engellendi</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements" aria-labelledby="heading-achievements">
+            <div class="section-header">
+                <h2 id="heading-achievements"><i class="fa-solid fa-trophy" style="color: var(--accent);" aria-hidden="true"></i> <span data-i18n="achieve_title">Başarılar ve Rozetler</span></h2>
+                <p style="color: var(--text-muted);" data-i18n="achieve_desc">Kullanıcının ilerlemesini ödüllendiren oyunlaştırma modülü.</p>
+            </div>
+            <div class="achievements-grid" id="badgeContainer"></div>
+        </section>
+
+        <section id="timeline" aria-labelledby="heading-timeline">
+            <div class="section-header">
+                <h2 id="heading-timeline"><i class="fa-solid fa-stethoscope" style="color: var(--primary-light);" aria-hidden="true"></i> <span data-i18n="health_title">Vücudun Yenilenme Algoritması</span></h2>
+                <p style="color: var(--text-muted);" data-i18n="health_desc">Tıbbi literatür taranarak oluşturulmuş gerçek zamanlı sağlık ilerleme haritası.</p>
+            </div>
+            <div class="timeline" id="healthTimeline"></div>
+        </section>
+
+        <section id="breathe" aria-labelledby="heading-breathe">
+            <div class="section-header">
+                <h2 id="heading-breathe"><i class="fa-solid fa-kit-medical" style="color: var(--primary-light);" aria-hidden="true"></i> <span data-i18n="breathe_title">İlk Yardım: 4-7-8 Nefes Terapisi Modülü</span></h2>
+                <p style="color: var(--text-muted);" data-i18n="breathe_desc">Parasempatik sinir sistemini harekete geçirerek ani nikotin krizlerini dindiren egzersiz yazılımı.</p>
+            </div>
+            <div class="breathe-container">
+                <div class="instruction-text" id="breatheText" style="font-weight: 600; font-size: 1.2rem;" data-i18n="breathe_start_hint">Sistemi başlatmak için tıklayın</div>
+                <div class="circle-wrap">
+                    <div class="circle-bg"></div>
+                    <div class="circle-animated" id="breatheCircle" data-i18n="breathe_ready">Hazır</div>
+                </div>
+                <div class="breathe-controls">
+                    <button type="button" class="btn btn-primary" id="btnStartBreathe" style="width: auto;">
+                        <i class="fa-solid fa-play" aria-hidden="true"></i> <span data-i18n="breathe_btn_start">Başlat</span>
+                    </button>
+                    <button type="button" class="btn btn-outline" id="btnStopBreathe" style="width: auto;">
+                        <i class="fa-solid fa-stop" aria-hidden="true"></i> <span data-i18n="breathe_btn_stop">Durdur</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="ai-tools" aria-labelledby="heading-ai">
+            <div class="gemini-header">
+                <span class="sparkle-icon" aria-hidden="true">✦</span>
+                <h2 id="heading-ai">Sağlık ve Motivasyon Destek</h2>
+            </div>
+            <p id="geminiMotivationText" class="ai-answer">Günlük motivasyon için önceden hazırlanan içeriği okuyabilirsiniz. Yapay zeka desteği kaldırıldı.</p>
+        </section>
+    </main>
+
+  <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo"><i class="fa-solid fa-fire-flame-curved"></i> Dumansız Gelecek</div>
+        
+        <!-- YEŞİLAY BÖLÜMÜ -->
+        <div class="yesilay-box">
+            <div class="yesilay-badge">
+                <i class="fa-solid fa-leaf"></i> YEŞİLAY
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-main); margin: 0;">
+                Sigara ve madde bağımlılığıyla mücadelede uzman desteği için <strong>YEDAM (115)</strong> Yeşilay Danışmanlık Merkezi'nden ücretsiz yardım alabilirsiniz.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <a href="https://www.yesilay.org.tr/" target="_blank" class="btn btn-yesilay">
+                <i class="fa-solid fa-leaf"></i> Yeşilay Resmi Web Sitesi
+            </a>
+            <a href="https://github.com/tolgauysal" target="_blank" class="btn btn-outline">
+                <i class="fa-brands fa-github"></i> Github Tolga Uysal
+            </a>
+            <a href="https://github.com/volkan560" target="_blank" class="btn btn-outline">
+                <i class="fa-brands fa-github"></i> Github Volkan Mutlu
+            </a>
+            <a href="docs/" target="_blank" class="btn btn-outline">
+                <i class="fa-solid fa-book"></i> Dokümantasyon
+            </a>
+            <a href="https://tolgauysal.github.io/T.U-App_Store/app.html?id=app_4" target="_blank" class="btn btn-primary" style="width: auto;">
+                <i class="fa-solid fa-download"></i> Android Uygulamayı İndir
+            </a>
+        </div>
+        <nav class="legal-links" aria-label="Yasal bağlantılar">
+            <a href="/">Uygulama ana sayfası</a>
+            <a href="/kvkk-aydınlatma-metni.html">Uygulama gizlilik politikası ve KVKK</a>
+            <a href="/hizmet-sartlari.html">Başvuru ve hizmet şartları</a>
+        </nav>
+        <p style="font-size: 0.85rem; color: var(--text-muted); max-width: 600px; margin: 0 auto;"><strong>Tolga Uysal</strong>, Türkiye Cumhuriyeti öğrencisi ve TEKNOFEST bireysel katılımcısıdır. <strong>Volkan Mutlu</strong> proje danışmanıdır. Proje, <strong>TEKNOFEST 2027</strong> İnsanlık Yararına Teknoloji - Sağlık ve İlk Yardım kategorisi için geliştirilmiştir.</p>
+        <p class="copyright">&copy; Dumansız Gelecek Inc.</p>
+    </footer>
+</body>
+</html>
